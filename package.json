@@ -13,6 +13,7 @@
     "web-vitals": "^2.1.4"
   },
   "devDependencies": {
+    "babel-plugin-module-resolver": "^4.1.0",
     "customize-cra": "^1.0.0",
     "react-app-rewired": "^2.2.1"
   },
@@ -22,7 +23,6 @@
     "test": "react-app-rewired test",
     "eject": "react-scripts eject"
   },
-  "config-overrides-path": "node_modules/react-app-rewired/config-overrides.js",
   "eslintConfig": {
     "extends": [
       "react-app",
