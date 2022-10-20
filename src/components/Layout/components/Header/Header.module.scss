@@ -89,3 +89,12 @@
 .actions {
 
 }
+
+.upload {
+    border-color:#e5e5e5;
+    color: rgba(22, 24, 35, 1);
+    width: 113.63px;
+    &:hover{
+        background: rgb(22, 24, 35, 0.03);
+    }
+}
