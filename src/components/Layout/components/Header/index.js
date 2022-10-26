@@ -28,6 +28,7 @@ import Menu from '~/components/Popper/Menu';
 import { faMessage, faPaperPlane, faUser } from '@fortawesome/free-regular-svg-icons';
 import 'tippy.js/dist/tippy.css';
 import { InboxIcon, MessagesIcon } from '~/components/Icons';
+import Image from '~/components/Image';
 const cx = classNames.bind(styles);
 const MENU_ITEMS = [
     {
