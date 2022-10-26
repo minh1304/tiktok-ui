@@ -83,8 +83,6 @@
         background-color: rgb(22, 24, 35, 0.06);
     }
 }
-.actions {
-}
 
 .upload {
     border-color: #e5e5e5;
@@ -94,10 +92,30 @@
         background: rgb(22, 24, 35, 0.03);
     }
 }
+.actions {
+    display: flex;
+    align-items: center;
+}
+.action-btn {
+    background-color: transparent;
+    font-size: 2rem;
+    padding: 5px 6px;
+    color: #161823;
+    margin-left: 16px;
+    cursor: pointer;
+}
+
 .more-btn {
     font-size: 2rem;
     margin-left: 28px;
     background: #fff;
     padding: 4px 8px;
     cursor: pointer;
+}
+
+.user-avatar {
+    border-radius: 50%;
+    width: 32px;
+    height: 32px;
+    margin-left: 24px;
 }
