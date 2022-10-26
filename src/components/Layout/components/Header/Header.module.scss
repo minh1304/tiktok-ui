@@ -96,12 +96,18 @@
     display: flex;
     align-items: center;
 }
-.action-btn {
+.action-btn1 {
     background-color: transparent;
-    font-size: 2rem;
-    padding: 5px 6px;
-    color: #161823;
+    padding: 3px 3px 0px;
     margin-left: 16px;
+    color: #161823;
+
+    cursor: pointer;
+}
+.action-btn2 {
+    background-color: transparent;
+    margin-left: 16px;
+    color: #161823;
     cursor: pointer;
 }
 

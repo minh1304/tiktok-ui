@@ -27,6 +27,7 @@ import AccountItem from '~/components/AccountItem';
 import Menu from '~/components/Popper/Menu';
 import { faMessage, faPaperPlane, faUser } from '@fortawesome/free-regular-svg-icons';
 import 'tippy.js/dist/tippy.css';
+import { InboxIcon, MessagesIcon } from '~/components/Icons';
 const cx = classNames.bind(styles);
 const MENU_ITEMS = [
     {
@@ -98,7 +99,7 @@ function Header() {
             to: '/logout',
             separate: true,
         },
-    ]
+    ];
     return (
         <header className={cx('wrapper')}>
             <div className={cx('inner')}>
@@ -138,13 +139,13 @@ function Header() {
                                 Upload
                             </Button>
                             <Tippy delay={[0, 200]} content="Messages" placement="bottom">
-                                <button className={cx('action-btn')}>
-                                    <FontAwesomeIcon icon={faPaperPlane} />
+                                <button className={cx('action-btn1')}>
+                                    <MessagesIcon />
                                 </button>
                             </Tippy>
                             <Tippy delay={[0, 200]} content="Inbox" placement="bottom">
-                                <button className={cx('action-btn')}>
-                                    <FontAwesomeIcon icon={faMessage} />
+                                <button className={cx('action-btn2')}>
+                                    <InboxIcon />
                                 </button>
                             </Tippy>
                         </>
