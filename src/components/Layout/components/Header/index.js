@@ -13,7 +13,6 @@ import {
     faGear,
     faCoins,
     faVideoCamera,
-    faDoorOpen,
     faArrowRightFromBracket,
 } from '@fortawesome/free-solid-svg-icons';
 import Tippy from '@tippyjs/react';
@@ -25,7 +24,7 @@ import images from '~/assets/images';
 import { Wrapper as PopperWrapper } from '~/components/Popper';
 import AccountItem from '~/components/AccountItem';
 import Menu from '~/components/Popper/Menu';
-import { faMessage, faPaperPlane, faUser } from '@fortawesome/free-regular-svg-icons';
+import {  faUser } from '@fortawesome/free-regular-svg-icons';
 import 'tippy.js/dist/tippy.css';
 import { InboxIcon, MessagesIcon } from '~/components/Icons';
 import Image from '~/components/Image';
@@ -160,11 +159,11 @@ function Header() {
                     )}
                     <Menu items={currentUser ? userMenu : MENU_ITEMS} onChange={handleMenuChange}>
                         {currentUser ? (
-                            <img
+                            <Image
                                 className={cx('user-avatar')}
                                 alt="Nguyen Van A"
                                 src="https://p16-sign-va.tiktokcdn.com/tos-useast2a-avt-0068-giso/229c49e6a5e7783b16b5e994ff2f6de1~c5_100x100.jpeg?x-expires=1666893600&x-signature=oxWlcnGZ8Hb2sW8%2FOrk33RZA0Y8%3D"
-                            ></img>
+                            ></Image>
                         ) : (
                             <button className={cx('more-btn')}>
                                 <FontAwesomeIcon icon={faEllipsisVertical} />
