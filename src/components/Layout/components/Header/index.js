@@ -2,9 +2,7 @@ import { useEffect, useState } from 'react';
 import classNames from 'classnames/bind';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {
-    faCircleXmark,
-    faSpinner,
-    faMagnifyingGlass,
+
     faPlus,
     faEllipsisVertical,
     faEarthAsia,
@@ -16,18 +14,18 @@ import {
     faArrowRightFromBracket,
 } from '@fortawesome/free-solid-svg-icons';
 import Tippy from '@tippyjs/react';
-import HeadlessTippy from '@tippyjs/react/headless';
 
 import Button from '~/components/Button';
 import styles from './Header.module.scss';
 import images from '~/assets/images';
-import { Wrapper as PopperWrapper } from '~/components/Popper';
-import AccountItem from '~/components/AccountItem';
+
 import Menu from '~/components/Popper/Menu';
 import {  faUser } from '@fortawesome/free-regular-svg-icons';
 import 'tippy.js/dist/tippy.css';
 import { InboxIcon, MessagesIcon } from '~/components/Icons';
 import Image from '~/components/Image';
+import Search from '../Search';
+
 const cx = classNames.bind(styles);
 const MENU_ITEMS = [
     {
@@ -60,13 +58,8 @@ const MENU_ITEMS = [
     },
 ];
 function Header() {
-    const [searchResult, setSearchResult] = useState([]);
     const currentUser = true;
-    useEffect(() => {
-        setTimeout(() => {
-            setSearchResult([]);
-        }, 0);
-    }, []);
+
     //handle logic
     const handleMenuChange = (menuItem) => {
         console.log(menuItem);
@@ -75,22 +68,22 @@ function Header() {
         {
             icon: <FontAwesomeIcon icon={faUser} />,
             title: 'View profile',
-            to: '/@hoaa',
+            to: '/@theanh28',
         },
         {
             icon: <FontAwesomeIcon icon={faCoins} />,
             title: 'Get Coins',
-            to: '/feedback',
+            to: '/coins',
         },
         {
             icon: <FontAwesomeIcon icon={faVideoCamera} />,
             title: 'LIVE Studio',
-            to: '/coin',
+            to: '/studio',
         },
         {
             icon: <FontAwesomeIcon icon={faGear} />,
             title: 'Settings',
-            to: '/setting',
+            to: '/setting'
         },
         ...MENU_ITEMS,
         {
@@ -105,33 +98,7 @@ function Header() {
             <div className={cx('inner')}>
                 <img src={images.logo} alt="Tiktok" />
 
-                <HeadlessTippy
-                    interactive
-                    visible={searchResult.length > 0}
-                    render={(attrs) => (
-                        <div className={cx('search-result')} tabIndex="-1" {...attrs}>
-                            <PopperWrapper>
-                                <h4 className={cx('search-title')}>Accounts</h4>
-                                <AccountItem />
-                                <AccountItem />
-                                <AccountItem />
-                                <AccountItem />
-                                <AccountItem />
-                            </PopperWrapper>
-                        </div>
-                    )}
-                >
-                    <div className={cx('search')}>
-                        <input placeholder="Search accounts and videos" spellCheck={false} />
-                        <button className={cx('clear')}>
-                            <FontAwesomeIcon icon={faCircleXmark} />
-                        </button>
-                        <FontAwesomeIcon className={cx('loading')} icon={faSpinner} />
-                        <button className={cx('search-btn')}>
-                            <FontAwesomeIcon icon={faMagnifyingGlass} />
-                        </button>
-                    </div>
-                </HeadlessTippy>
+                <Search/>
                 <div className={cx('actions')}>
                     {currentUser ? (
                         <>
@@ -162,7 +129,8 @@ function Header() {
                             <Image
                                 className={cx('user-avatar')}
                                 alt="Nguyen Van A"
-                                src="https://p16-sign-va.tiktokcdn.com/tos-useast2a-avt-0068-giso/229c49e6a5e7783b16b5e994ff2f6de1~c5_100x100.jpeg?x-expires=1666893600&x-signature=oxWlcnGZ8Hb2sW8%2FOrk33RZA0Y8%3D"
+                                // src="https://p16-sign-va.tiktokcdn.com/tos-useast2a-avt-0068-giso/229c49e6a5e7783b16b5e994ff2f6de1~c5_100x100.jpeg?x-expires=1666893600&x-signature=oxWlcnGZ8Hb2sW8%2FOrk33RZA0Y8%3D"
+                                src="https://p16-sign-va.tiktokcdn.com/tos-useast2a-avt-0068-aiso/65d3c6b1d1e205c75536ccf1f26d552d~c5_100x100.jpeg?x-expires=1667368800&x-signature=7bJNrToy%2Bd%2BZOWj5msDadcrH4H4%3D"
                             ></Image>
                         ) : (
                             <button className={cx('more-btn')}>
