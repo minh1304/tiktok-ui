@@ -14,17 +14,18 @@ import {
     faArrowRightFromBracket,
 } from '@fortawesome/free-solid-svg-icons';
 import Tippy from '@tippyjs/react';
+import { Link } from 'react-router-dom';
 
 import Button from '~/components/Button';
 import styles from './Header.module.scss';
 import images from '~/assets/images';
-
 import Menu from '~/components/Popper/Menu';
 import {  faUser } from '@fortawesome/free-regular-svg-icons';
 import 'tippy.js/dist/tippy.css';
 import { InboxIcon, MessagesIcon } from '~/components/Icons';
 import Image from '~/components/Image';
 import Search from '../Search';
+
 
 const cx = classNames.bind(styles);
 const MENU_ITEMS = [
@@ -96,7 +97,8 @@ function Header() {
     return (
         <header className={cx('wrapper')}>
             <div className={cx('inner')}>
-                <img src={images.logo} alt="Tiktok" />
+                <Link to='/'><img src={images.logo} alt="Tiktok" /></Link>
+                
 
                 <Search/>
                 <div className={cx('actions')}>
