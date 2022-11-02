@@ -16,7 +16,7 @@ function Search() {
     const [searchResult, setSearchResult] = useState([]);
     const [showResult, setShowResult] = useState(false);
     const [loading, setLoading] = useState(false);
-    const debounced = useDebounce(searchValue, 500 );
+    const debounced = useDebounce(searchValue, 500);
     const inputRef = useRef();
 
     useEffect(() => {
@@ -33,7 +33,7 @@ function Search() {
             })
             .catch(() => {
                 setLoading(false);
-            }); 
+            });
     }, [debounced]);
     const handleClear = () => {
         setSearchValue('');
