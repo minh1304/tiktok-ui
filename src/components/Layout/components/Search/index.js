@@ -45,8 +45,9 @@ function Search() {
 
     const handleChange = (e) => {
         const searchValue = e.target.value;
-        if (!searchValue.startsWith(' ')) {
-            setSearchValue(searchValue);
+        if(!searchValue.startsWith(' '))
+        {
+            setSearchValue(searchValue)
         }
     };
 
@@ -70,7 +71,7 @@ function Search() {
                 <div className={cx('search')}>
                     <input
                         ref={inputRef}
-                        value={searchValue.trim() && searchValue}
+                        value={searchValue}
                         placeholder="Search accounts and videos"
                         spellCheck={false}
                         onChange={handleChange}

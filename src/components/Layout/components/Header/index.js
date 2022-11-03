@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+// import { useEffect, useState } from 'react';
 import classNames from 'classnames/bind';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {
@@ -25,6 +25,7 @@ import 'tippy.js/dist/tippy.css';
 import { InboxIcon, MessagesIcon } from '~/components/Icons';
 import Image from '~/components/Image';
 import Search from '../Search';
+import routesConfig from '~/config/routes';
 
 
 const cx = classNames.bind(styles);
@@ -97,7 +98,7 @@ function Header() {
     return (
         <header className={cx('wrapper')}>
             <div className={cx('inner')}>
-                <Link to='/' className={cx('logo')}><img src={images.logo} alt="Tiktok" /></Link>
+                <Link to={routesConfig.home} className={cx('logo')}><img src={images.logo} alt="Tiktok" /></Link>
                 
 
                 <Search/>
