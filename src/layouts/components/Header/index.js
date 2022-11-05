@@ -43,6 +43,7 @@ const MENU_ITEMS = [
                     type: 'language',
                     code: 'vi',
                     title: 'Tiếng Việt',
+                    
                 },
             ],
         },
