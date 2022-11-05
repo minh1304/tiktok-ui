@@ -2,7 +2,6 @@
 import classNames from 'classnames/bind';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {
-
     faPlus,
     faEllipsisVertical,
     faEarthAsia,
@@ -20,13 +19,12 @@ import Button from '~/components/Button';
 import styles from './Header.module.scss';
 import images from '~/assets/images';
 import Menu from '~/components/Popper/Menu';
-import {  faUser } from '@fortawesome/free-regular-svg-icons';
+import { faUser } from '@fortawesome/free-regular-svg-icons';
 import 'tippy.js/dist/tippy.css';
 import { InboxIcon, MessagesIcon } from '~/components/Icons';
 import Image from '~/components/Image';
 import Search from '../Search';
-import routesConfig from '~/config/routes';
-
+import config from '~/config';
 
 const cx = classNames.bind(styles);
 const MENU_ITEMS = [
@@ -85,7 +83,7 @@ function Header() {
         {
             icon: <FontAwesomeIcon icon={faGear} />,
             title: 'Settings',
-            to: '/setting'
+            to: '/setting',
         },
         ...MENU_ITEMS,
         {
@@ -98,10 +96,11 @@ function Header() {
     return (
         <header className={cx('wrapper')}>
             <div className={cx('inner')}>
-                <Link to={routesConfig.home} className={cx('logo')}><img src={images.logo} alt="Tiktok" /></Link>
-                
+                <Link to={config.routes.home} className={cx('logo')}>
+                    <img src={images.logo} alt="Tiktok" />
+                </Link>
 
-                <Search/>
+                <Search />
                 <div className={cx('actions')}>
                     {currentUser ? (
                         <>
@@ -114,7 +113,7 @@ function Header() {
                                 </button>
                             </Tippy>
                             <Tippy delay={[0, 200]} content="Inbox" placement="bottom">
-                                <button style={{marginTop: -3}} className={cx('action-btn2')}>
+                                <button style={{ marginTop: -3 }} className={cx('action-btn2')}>
                                     <InboxIcon />
                                 </button>
                             </Tippy>
