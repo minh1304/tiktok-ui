@@ -1,16 +1,8 @@
-export const MessagesIcon = ({
-    marginLeft = '16px',
-    padding = '3px 3px 0px',
-    width = '2.6rem',
-    height = '2.6rem',
-    className,
-}) => (
+export const MessagesIcon = ({ width = '2.6rem', height = '2.6rem', className }) => (
     <svg
         className={className}
         width={width}
         height={height}
-        padding={padding}
-        margin-left={marginLeft}
         viewBox="0 0 48 48"
         fill="currentColor"
         xmlns="http://www.w3.org/2000/svg"
@@ -22,7 +14,6 @@ export const MessagesIcon = ({
         ></path>
     </svg>
 );
-
 export const InboxIcon = ({ width = '3.2rem', height = '3.2rem', className }) => (
     <svg
         className={className}

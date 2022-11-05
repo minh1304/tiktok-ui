@@ -3,6 +3,7 @@ import { useState } from 'react';
 import classNames from 'classnames/bind';
 import styles from './Menu.module.scss';
 import { Wrapper as PopperWrapper } from '~/components/Popper';
+import 'tippy.js/dist/tippy.css';
 import MenuItem from './MenuItem';
 import Header from './Header';
 
@@ -35,12 +36,12 @@ function Menu({ children, items = [], hideOnClick = false ,onChange = defaultFn 
         <Tippy
             interactive
             hideOnClick={hideOnClick}
-            delay={[0, 600]}
-            offset={[16, 8]}
+            delay={[0, 700]}
+            offset={[12, 8]}
             placement="bottom-end"
             render={(attrs) => (
                 <div className={cx('menu-list')} tabIndex="-1" {...attrs}>
-                    <PopperWrapper>
+                    <PopperWrapper className={cx('menu-popper')}>
                         {history.length > 1 && (
                             <Header
                                 title="Language"
@@ -49,7 +50,7 @@ function Menu({ children, items = [], hideOnClick = false ,onChange = defaultFn 
                                 }}
                             />
                         )}
-                        {renderItems()}
+                        <div className={cx('menu-body')}>{renderItems()}</div>
                     </PopperWrapper>
                 </div>
             )}

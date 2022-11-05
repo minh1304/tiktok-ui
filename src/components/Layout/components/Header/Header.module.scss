@@ -4,6 +4,8 @@
     --search-top-spacer: 9px;
 
     width: 100%;
+    position: fixed;
+    background-color: white;
     height: var(--default-layout-header-height);
     box-shadow: 0px 1px 1px rgb(0 0 0 / 12%);
     display: flex;
