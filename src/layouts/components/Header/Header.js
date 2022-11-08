@@ -21,7 +21,7 @@ import images from '~/assets/images';
 import Menu from '~/components/Popper/Menu';
 import { faUser } from '@fortawesome/free-regular-svg-icons';
 import 'tippy.js/dist/tippy.css';
-import { InboxIcon, MessagesIcon } from '~/components/Icons/Icons';
+import { InboxIcon, MessageIcon } from '~/components/Icons/Icons';
 import Image from '~/components/Image';
 import Search from '../Search';
 import config from '~/config';
@@ -109,7 +109,7 @@ function Header() {
                             </Button>
                             <Tippy delay={[0, 200]} content="Messages" placement="bottom">
                                 <button className={cx('action-btn1')}>
-                                    <MessagesIcon />
+                                    <MessageIcon />
                                 </button>
                             </Tippy>
                             <Tippy delay={[0, 200]} content="Inbox" placement="bottom">
