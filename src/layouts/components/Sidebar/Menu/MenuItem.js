@@ -19,8 +19,7 @@ function MenuItem({ title, to, icon, activeIcon }) {
                         <span className={cx('title')}>{title}</span>
                     </>
                 );
-            }
-        }
+            }}
         >
             <span className={cx('icon')}>{icon}</span>
             <span className={cx('active-icon')}>{activeIcon}</span>
