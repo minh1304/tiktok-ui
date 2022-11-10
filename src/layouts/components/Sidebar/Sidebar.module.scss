@@ -2,4 +2,11 @@
     width: 356px;
     padding: 20px 0px 26px 8px;
     margin-left: -18px;
+    display: flex;
+    flex-direction: column;
+    // min-height: 100px;
+    max-height: 920px;
+}
+.body{
+    overflow-y: auto;
 }
