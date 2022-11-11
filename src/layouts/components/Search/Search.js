@@ -71,7 +71,7 @@ function Search({wider}) {
                 )}
                 onClickOutside={handleHideResult}
             >
-                <div className={wider? cx('ahihi'): cx('search')}>
+                <div className={ wider? cx('ahihi'): cx('search')}>
                     <input
                         ref={inputRef}
                         value={searchValue}

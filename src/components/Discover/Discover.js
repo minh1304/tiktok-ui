@@ -4,6 +4,8 @@ import styles from './Discover.module.scss';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faHashtag, faMusic } from '@fortawesome/free-solid-svg-icons';
 import Button from '../Button';
+import { Link } from 'react-router-dom';
+import config from '~/config';
 const cx = classNames.bind(styles);
 function Discover({ label }) {
     //
@@ -54,7 +56,7 @@ function Discover({ label }) {
             <p className={cx('label')}>{label}</p>
             <div className = {cx('discover')}>
                 {data.map((value, index) => (
-                    <div key={index}>
+                    <Link to={config.routes.discover} key={index}>
                         <button className={cx('btn')}>
                             <div className={cx('icon')}>
                                 {value.icon}
@@ -63,7 +65,7 @@ function Discover({ label }) {
                                 {value.title}
                             </div> 
                         </button>
-                    </div>
+                    </Link>
                 ))}
            </div>
         </div>

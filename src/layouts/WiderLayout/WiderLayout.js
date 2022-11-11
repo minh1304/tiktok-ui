@@ -9,7 +9,7 @@ function WiderLayout({ children }) {
       <div className={cx('wrapper')}>
         <Header wider={true} />
         <div className={cx('container')}>
-            <Sidebar collapse={true} />
+            <Sidebar wider={true} />
           <div className={cx('content')}>{children}</div>
         </div>
       </div>

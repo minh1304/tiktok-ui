@@ -100,7 +100,7 @@ function Header({wider}) {
                     <img src={images.logo} alt="Tiktok" />
                 </Link>
 
-                <Search wider={true}/>
+                <Search wider={wider}/>
                 <div className={cx('actions')}>
                     {currentUser ? (
                         <>
