@@ -8,6 +8,7 @@ import { faCheckCircle } from '@fortawesome/free-solid-svg-icons';
 import { Wrapper as PopperWrapper } from '~/components/Popper';
 import styles from './SuggestedAccounts.module.scss';
 import AccountPreview from './AccountPreview';
+import Image from '../Image';
 
 const cx = classNames.bind(styles);
 function AccountItem({ data }) {
@@ -25,7 +26,7 @@ function AccountItem({ data }) {
         <Link to={`/@${data.nickname}`}>
             <Tippy interactive delay={[800, 500]} offset={[-20, 0]} placement="bottom" render={renderPreview}>
                 <div className={cx('account-item')}>
-                    <img className={cx('avatar')} src={data.avatar} alt={data.full_name} />
+                    <Image className={cx('avatar')} src={data.avatar} alt={data.nickname} />
                     <div className={cx('item-info')}>
                         <p className={cx('nickname')}>
                             <strong>{data.nickname}</strong>

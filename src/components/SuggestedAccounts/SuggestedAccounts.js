@@ -3,27 +3,33 @@ import { useEffect, useState } from 'react';
 import classNames from 'classnames/bind';
 import styles from './SuggestedAccounts.module.scss';
 import AccountItem from './AccountItem';
+import * as userService from '~/services/userService';
 const cx = classNames.bind(styles);
-function SuggestedAccounts({ label }) {
-    const [account, setAccount] = useState([]);
+function SuggestedAccounts({ label, data = [] }) {
+    const [suggestedUser, setSuggestedUser] = useState([]);
     const [seeAll, setSeeAll] = useState(false);
-
     useEffect(() => {
         if (seeAll) {
-            fetch('https://tiktok.fullstack.edu.vn/api/users/suggested?page=1&per_page=16')
-                .then((res) => res.json())
-                .then((res) => setAccount(res.data));
+            userService
+                .getSuggested({ page: 1, perPage: 16 })
+                .then((data) => {
+                    setSuggestedUser(data);
+                })
+                .catch((error) => console.log(error));
         } else {
-            fetch('https://tiktok.fullstack.edu.vn/api/users/suggested?page=1&per_page=5')
-                .then((res) => res.json())
-                .then((res) => setAccount(res.data));
+            userService
+                .getSuggested({ page: 1, perPage: 5 })
+                .then((data) => {
+                    setSuggestedUser(data);
+                })
+                .catch((error) => console.log(error));
         }
     }, [seeAll]);
     return (
         <div className={cx('wrapper')}>
             <p className={cx('label')}>{label}</p>
-            {account.map((result) => (
-                <AccountItem key={result.id} data={result} />
+            {suggestedUser.map((account) => (
+                <AccountItem key={account.id} data={account} />
             ))}
 
             {!seeAll && (
@@ -41,5 +47,6 @@ function SuggestedAccounts({ label }) {
 }
 SuggestedAccounts.propTypes = {
     label: PropTypes.string.isRequired,
+    data: PropTypes.array,
 };
 export default SuggestedAccounts;

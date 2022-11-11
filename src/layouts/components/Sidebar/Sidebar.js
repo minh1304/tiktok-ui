@@ -1,6 +1,6 @@
 import classNames from 'classnames/bind';
 import styles from './Sidebar.module.scss';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import Menu, { MenuItem } from './Menu';
 import {
     HomeIcon,
@@ -15,10 +15,11 @@ import SuggestedAccounts from '~/components/SuggestedAccounts';
 import Discover from '~/components/Discover';
 
 const cx = classNames.bind(styles);
+
 function Sidebar() {
     return (
         <aside className={cx('wrapper')}>
-            <div className={cx('body')} >
+            <div className={cx('body')}>
                 <Menu>
                     <MenuItem
                         title="For You"
