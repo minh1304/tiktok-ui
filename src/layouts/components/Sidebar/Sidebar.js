@@ -12,6 +12,7 @@ import {
 } from '~/components/Icons';
 import config from '~/config';
 import SuggestedAccounts from '~/components/SuggestedAccounts';
+import Discover from '~/components/Discover';
 
 const cx = classNames.bind(styles);
 function Sidebar() {
@@ -39,6 +40,7 @@ function Sidebar() {
                     />
                 </Menu>
                 <SuggestedAccounts label="Suggested accounts" />
+                <Discover label="Discover" />
             </div>
         </aside>
     );

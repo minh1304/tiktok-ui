@@ -57,7 +57,7 @@ const MENU_ITEMS = [
         title: 'Keyboard shortcuts',
     },
 ];
-function Header() {
+function Header({wider}) {
     const currentUser = true;
 
     //handle logic
@@ -78,7 +78,7 @@ function Header() {
         {
             icon: <FontAwesomeIcon icon={faVideoCamera} />,
             title: 'LIVE Studio',
-            to: '/studio',
+            to: '/Live',
         },
         {
             icon: <FontAwesomeIcon icon={faGear} />,
@@ -95,12 +95,12 @@ function Header() {
     ];
     return (
         <header className={cx('wrapper')}>
-            <div className={cx('inner')}>
+            <div className={wider? cx('ahihi') :cx('inner')}>
                 <Link to={config.routes.home} className={cx('logo')}>
                     <img src={images.logo} alt="Tiktok" />
                 </Link>
 
-                <Search />
+                <Search wider={true}/>
                 <div className={cx('actions')}>
                     {currentUser ? (
                         <>

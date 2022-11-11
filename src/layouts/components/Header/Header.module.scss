@@ -11,6 +11,25 @@
     display: flex;
     justify-content: center;
 }
+.ahihi {
+    height: 100%;
+    width: var(--default-layout-width);
+    display: flex;
+    align-items: center;
+    padding: 0 var(--default-layout-horizontal-spacer);
+    .logo {
+        position: absolute;
+        left: 16px;
+
+    }
+    .actions {
+        display: flex;
+        align-items: center;
+        position: absolute;
+        right: 22px;
+
+    }
+}
 .inner {
     height: 100%;
     width: var(--default-layout-width);
@@ -64,5 +83,3 @@
     padding: 4px 8px;
     cursor: pointer;
 }
-
-

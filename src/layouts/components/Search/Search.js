@@ -12,7 +12,7 @@ import styles from './Search.module.scss';
 import { useDebounce } from '~/hooks';
 
 const cx = classNames.bind(styles);
-function Search() {
+function Search({wider}) {
     const [searchValue, setSearchValue] = useState('');
     const [searchResult, setSearchResult] = useState([]);
     const [showResult, setShowResult] = useState(false);
@@ -71,7 +71,7 @@ function Search() {
                 )}
                 onClickOutside={handleHideResult}
             >
-                <div className={cx('search')}>
+                <div className={wider? cx('ahihi'): cx('search')}>
                     <input
                         ref={inputRef}
                         value={searchValue}
