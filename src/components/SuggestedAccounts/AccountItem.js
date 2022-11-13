@@ -22,7 +22,6 @@ function AccountItem({ data }) {
         );
     };
     return (
-        // Lát đổi thành link to như search
         <Link to={`/@${data.nickname}`}>
             <Tippy interactive delay={[800, 500]} offset={[-20, 0]} placement="bottom" render={renderPreview}>
                 <div className={cx('account-item')}>

@@ -5,7 +5,7 @@ import styles from './SuggestedAccounts.module.scss';
 import AccountItem from './AccountItem';
 import * as userService from '~/services/userService';
 const cx = classNames.bind(styles);
-function SuggestedAccounts({ label, data = [] }) {
+function SuggestedAccounts({ label }) {
     const [suggestedUser, setSuggestedUser] = useState([]);
     const [seeAll, setSeeAll] = useState(false);
     useEffect(() => {

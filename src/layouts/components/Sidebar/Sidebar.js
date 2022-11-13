@@ -1,6 +1,5 @@
 import classNames from 'classnames/bind';
 import styles from './Sidebar.module.scss';
-import { useState, useEffect } from 'react';
 import Menu, { MenuItem } from './Menu';
 import {
     HomeIcon,
