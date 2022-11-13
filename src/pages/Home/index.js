@@ -8,6 +8,10 @@ function Home() {
         <div className={cx('wrapper')}>
             <div className={cx('body')}>
                 <Video></Video>
+                <Video></Video>
+                <Video></Video>
+                <Video></Video>
+                <Video></Video>
             </div>
         </div>
     )

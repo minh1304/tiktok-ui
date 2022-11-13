@@ -1,6 +1,8 @@
 .container {
     display: flex;
-    width: 692px;
+    // width: 692px;
+    border-bottom: 1px solid #e3e3e4;
+    padding-top: 20px;
 }
 .avatar {
     width: 56px;
@@ -41,6 +43,7 @@
     margin-left: 12px;
     width: 510px;
     height: 22px;
+    margin-bottom: 12px;
 }
 .music{
     height: 12px;
@@ -48,14 +51,23 @@
     margin-right: 5px;
 }
 
-.video {
+.container-video {
     margin-left: 12px;
-    width: 289px;
-    height: 514px;
+    // width: 236px;
+    // height: 514px;
+}
+.video {
+    width: 336px;
+    height: 600px;
+    border-radius: 8px;
+    overflow: hidden;
+    object-fit: cover;
+    cursor: pointer;
+    margin-bottom: 10px;
 }
 .follow-btn{
     width: 88px;
     height: 28px;
-    margin-left: 10px;
+    margin-left: 20px;
     margin-top: 7px;
 }

@@ -41,10 +41,24 @@ function Video() {
                     </Link>
                 </div>
 
-                <div className={cx('video')}>
-                    <h1>Videos nè </h1>
+                <div className={cx('container-video')}>
+                    <video
+                        // ref={videoRef}
+                        className={cx('video')}
+                        // style={{ width: '336px', height:'600px'}}
+                        controls
+                        loop
+                        muted
+                        playsInline
+                        // poster={video.thumb_url}
+                    >
+                        <source
+                            src="https://v16-webapp.tiktok.com/bcb45b0d24c61614db7760c6a0c2376f/637170cc/video/tos/useast2a/tos-useast2a-pve-0037c001-aiso/20141913fdb64357a031ce091560c623/?a=1988&ch=0&cr=0&dr=0&lr=tiktok&cd=0%7C0%7C1%7C0&cv=1&br=3314&bt=1657&cs=0&ds=3&ft=6-LrVjqM9wUxRbV9SN6~OiXf3bgIHCfxt3mcY9kaIRkSgl&mime_type=video_mp4&qs=0&rc=Nzo3aWhoZzM5NzU1Nzc4OEBpM29rNWY6Zmk3ZzMzZjgzM0AwMTEyXzFeNjUxYi1hL2EwYSNnYWxscjQwZWtgLS1kL2Nzcw%3D%3D&l=202211131633330102450130381F1EC7B7&btag=80000"
+                            type="video/mp4"
+                        />
+                        Your browser does not support HTML video.
+                    </video>
                 </div>
-
             </div>
             <Button outline className={cx('follow-btn')}>
                 Follow
@@ -65,7 +79,6 @@ function Video() {
                 Your browser does not support HTML video.
               </video>
             </div> */}
-
         </div>
     );
 }
