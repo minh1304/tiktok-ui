@@ -58,12 +58,12 @@ function Discover({ label }) {
                 {data.map((value, index) => (
                     <Link to={config.routes.discover} key={index}>
                         <button className={cx('btn')}>
-                            <div className={cx('icon')}>
+                            <p className={cx('icon')}>
                                 {value.icon}
-                            </div>  
-                            <div className={cx('content')}>
+                            </p>  
+                            <p className={cx('content')}>
                                 {value.title}
-                            </div> 
+                            </p> 
                         </button>
                     </Link>
                 ))}

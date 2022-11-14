@@ -32,7 +32,6 @@
     background-color: transparent;
     min-height: 24px;
 
-    position: relative;
 
     &:hover {
         cursor: pointer;
@@ -41,25 +40,16 @@
 }
 
 .icon {
-    padding-top: 4px;
-    font-size: 1.3rem;
-    color: rgb(22, 24, 35);
-    width: 15px;
-    height: 15px;
-    position: absolute;
-    top: 35%;
-    transform: translateY(-50%);
+    font-size: 16px;
 }
 
 .content {
     text-overflow: ellipsis;
-    overflow: hidden;
     white-space: nowrap;
     color: rgba(22, 24, 35, 0.75);
     font-weight: 400;
     font-size: 14px;
     line-height: 18px;
     padding-left: 6px;
-    margin-left: 15px;
     max-width: 100%;
 }
