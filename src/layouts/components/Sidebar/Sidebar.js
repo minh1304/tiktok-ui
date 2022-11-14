@@ -17,7 +17,7 @@ const cx = classNames.bind(styles);
 
 function Sidebar() {
     return (
-        <aside className={cx('wrapper')}>
+        <div className={cx('wrapper')}>
             <div className={cx('body')}>
                 <Menu>
                     <MenuItem
@@ -42,7 +42,7 @@ function Sidebar() {
                 <SuggestedAccounts label="Suggested accounts" />
                 <Discover label="Discover" />
             </div>
-        </aside>
+        </div>
     );
 }
 
