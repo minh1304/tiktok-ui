@@ -6,7 +6,7 @@ import styles from './Home.module.scss';
 import * as timelineService from '~/services/timelineService';
 
 const cx = classNames.bind(styles);
-const INIT_PAGE = 1;
+const INIT_PAGE = 15;
 function Home() {
     const [page, setPage] = useState(INIT_PAGE);
     const [videos, setVideos] = useState([]);

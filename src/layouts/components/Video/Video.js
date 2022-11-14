@@ -1,37 +1,64 @@
 import { Link } from 'react-router-dom';
 import classNames from 'classnames/bind';
 import styles from './Video.module.scss';
+import Tippy from '@tippyjs/react/headless';
 
+import { Wrapper as PopperWrapper } from '~/components/Popper';
 import config from '~/config';
 import Image from '~/components/Image';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCheckCircle, faMusic } from '@fortawesome/free-solid-svg-icons';
 import Button from '~/components/Button';
 
+import AccountPreview from './AccountPreview';
+
 const cx = classNames.bind(styles);
 
-function Video({video}) {
+function Video({ video }) {
+    const renderPreview = (prop) => {
+        return (
+            <div tabIndex="-1" {...prop}>
+                <PopperWrapper>
+                    <AccountPreview data={video} />
+                </PopperWrapper>
+            </div>
+        );
+    };
     return (
         <div className={cx('container')}>
             <Link to={config.routes.following}>
-                <Image
-                    className={cx('avatar')}
-                    src={video.user.avatar}
-                    alt="Ciin"
-                />
+                <Tippy interactive delay={[800, 500]} offset={[-10, 5]} placement="bottom-start" render={renderPreview}>
+                    <Image className={cx('avatar')} src={video.user.avatar} alt={video.user.nickname} />
+                </Tippy>
             </Link>
             <div>
                 <Link to={config.routes.following} className={cx('item-info')}>
-                    <p className={cx('nickname')}>
-                        <strong>{video.user.nickname}</strong>
-                        <FontAwesomeIcon className={cx('check')} icon={faCheckCircle} />
-                    </p>
-                    <p className={cx('name')}>{video.user.first_name} {video.user.last_name}</p>
+                    <Tippy
+                        interactive
+                        delay={[800, 500]}
+                        offset={[-10, 5]}
+                        placement="bottom-start"
+                        render={renderPreview}
+                    >
+                        <p className={cx('nickname')}>
+                            <strong>{video.user.nickname}</strong>
+                            <FontAwesomeIcon className={cx('check')} icon={faCheckCircle} />
+                        </p>
+                    </Tippy>
+                    <Tippy
+                        interactive
+                        delay={[800, 500]}
+                        offset={[-10, 5]}
+                        placement="bottom-start"
+                        render={renderPreview}
+                    >
+                        <p className={cx('name')}>
+                            {video.user.first_name} {video.user.last_name}
+                        </p>
+                    </Tippy>
                 </Link>
 
-                <div className={cx('description')}>
-                    {video.description}
-                </div>
+                <div className={cx('description')}>{video.description}</div>
                 <div className={cx('link-music')}>
                     <Link to={config.routes.following}>
                         <h4>
@@ -52,10 +79,7 @@ function Video({video}) {
                         playsInline
                         poster={video.thumb_url}
                     >
-                        <source
-                            src={video.file_url}
-                            type="video/mp4"
-                        />
+                        <source src={video.file_url} type="video/mp4" />
                         Your browser does not support HTML video.
                     </video>
                 </div>
