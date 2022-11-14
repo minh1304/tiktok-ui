@@ -3,7 +3,6 @@ import classNames from 'classnames/bind';
 import styles from './Discover.module.scss';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faHashtag, faMusic } from '@fortawesome/free-solid-svg-icons';
-import Button from '../Button';
 import { Link } from 'react-router-dom';
 import config from '~/config';
 const cx = classNames.bind(styles);
