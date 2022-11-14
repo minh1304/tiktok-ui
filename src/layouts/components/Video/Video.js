@@ -2,12 +2,13 @@ import { Link } from 'react-router-dom';
 import classNames from 'classnames/bind';
 import styles from './Video.module.scss';
 import Tippy from '@tippyjs/react/headless';
+import { useState } from 'react';
 
 import { Wrapper as PopperWrapper } from '~/components/Popper';
 import config from '~/config';
 import Image from '~/components/Image';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faCheckCircle, faMusic } from '@fortawesome/free-solid-svg-icons';
+import { faCheckCircle, faCommentDots, faHeart, faMusic, faShare } from '@fortawesome/free-solid-svg-icons';
 import Button from '~/components/Button';
 
 import AccountPreview from './AccountPreview';
@@ -23,6 +24,16 @@ function Video({ video }) {
                 </PopperWrapper>
             </div>
         );
+    };
+    const [like, setLike] = useState(false);
+    const handleLike = () => {
+
+        if (like) {
+            setLike(false);
+        }
+        else{
+            setLike(true);
+        }
     };
     return (
         <div className={cx('container')}>
@@ -82,6 +93,32 @@ function Video({ video }) {
                         <source src={video.file_url} type="video/mp4" />
                         Your browser does not support HTML video.
                     </video>
+                    <div className={cx('action')}>
+                        <button className={cx('button')} onClick={handleLike} >
+                            <div className={cx('icon')}>
+                                <p>
+                                    <FontAwesomeIcon className={like ?cx('span-icon-wrapper-like') :cx('span-icon-wrapper')} icon={faHeart} />
+                                </p>
+                            </div>
+                            <strong className={cx('count')}>10k</strong>
+                        </button>
+                        <button className={cx('button')}>
+                            <div className={cx('icon')}>
+                                <p className="icon-wrapper">
+                                    <FontAwesomeIcon className={cx('span-icon-wrapper')} icon={faCommentDots} />
+                                </p>
+                            </div>
+                            <strong className={cx('count')}>323</strong>
+                        </button>
+                        <button className={cx('button')}>
+                            <div className={cx('icon')}>
+                                <p className="icon-wrapper">
+                                    <FontAwesomeIcon className={cx('span-icon-wrapper')} icon={faShare} />
+                                </p>
+                            </div>
+                            <strong className={cx('count')}>410</strong>
+                        </button>
+                    </div>
                 </div>
             </div>
             <Button outline className={cx('follow-btn')}>
