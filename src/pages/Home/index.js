@@ -6,31 +6,37 @@ import styles from './Home.module.scss';
 import * as timelineService from '~/services/timelineService';
 
 const cx = classNames.bind(styles);
-const INIT_PAGE = 15;
+const INIT_PAGE = 1;
 function Home() {
     const [page, setPage] = useState(INIT_PAGE);
     const [videos, setVideos] = useState([]);
     useEffect(() => {
         timelineService
-            .getVideos({ type: 'for-you', page: page })
+            .getVideos({ type: 'for-you', page })
             // .then((res) => {
             //     if (Array.isArray(res.data)) {
             //         setVideos((prev) => [...prev, ...res.data]);
             //     }
             // })
             .then((data) => {
-                setVideos(data);
+                setVideos((prev) => [...prev, ...data]);
             })
             .catch((error) => {
                 console.log(error);
             });
     }, [page]);
+    const handleSeeMore = () => {
+        setPage(page + 1);
+    };
     return (
         <div className={cx('wrapper')}>
             <div className={cx('body')}>
                 {videos.map((video) => (
                     <Video key={video.id} video={video} />
                 ))}
+                <p onClick={handleSeeMore} className={cx('see-more')}>
+                    See more video
+                </p>
             </div>
         </div>
     );
