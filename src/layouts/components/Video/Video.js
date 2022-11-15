@@ -26,13 +26,19 @@ function Video({ video }) {
         );
     };
     const [like, setLike] = useState(false);
+    const [following, setFollowing] = useState(false);
     const handleLike = () => {
-
         if (like) {
             setLike(false);
-        }
-        else{
+        } else {
             setLike(true);
+        }
+    };
+    const handleFollow = () => {
+        if (following) {
+            setFollowing(false);
+        } else {
+            setFollowing(true);
         }
     };
     return (
@@ -94,10 +100,13 @@ function Video({ video }) {
                         Your browser does not support HTML video.
                     </video>
                     <div className={cx('action')}>
-                        <button className={cx('button')} onClick={handleLike} >
+                        <button className={cx('button')} onClick={handleLike}>
                             <div className={cx('icon')}>
                                 <p>
-                                    <FontAwesomeIcon className={like ?cx('span-icon-wrapper-like') :cx('span-icon-wrapper')} icon={faHeart} />
+                                    <FontAwesomeIcon
+                                        className={like ? cx('span-icon-wrapper-like') : cx('span-icon-wrapper')}
+                                        icon={faHeart}
+                                    />
                                 </p>
                             </div>
                             <strong className={cx('count')}>10k</strong>
@@ -121,9 +130,17 @@ function Video({ video }) {
                     </div>
                 </div>
             </div>
-            <Button outline className={cx('follow-btn')}>
-                Follow
-            </Button>
+            {!following && (
+                <Button onClick={handleFollow} outline className={cx('follow-btn')}>
+                    Follow
+                </Button>
+            )}
+            {following && (
+                <Button onClick={handleFollow} round className={cx('following-btn')}>
+                    Following
+                </Button>
+            )}
+
             {/* <div className="flex">
             <div className="mr-4">
               <video
