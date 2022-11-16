@@ -109,7 +109,7 @@ function Video({ video }) {
                                     />
                                 </p>
                             </div>
-                            <strong className={cx('count')}>10k</strong>
+                            <strong className={cx('count')}>{video.likes_count}</strong>
                         </button>
                         <button className={cx('button')}>
                             <div className={cx('icon')}>
@@ -117,7 +117,7 @@ function Video({ video }) {
                                     <FontAwesomeIcon className={cx('span-icon-wrapper')} icon={faCommentDots} />
                                 </p>
                             </div>
-                            <strong className={cx('count')}>323</strong>
+                            <strong className={cx('count')}>{video.comments_count}</strong>
                         </button>
                         <button className={cx('button')}>
                             <div className={cx('icon')}>
@@ -125,7 +125,7 @@ function Video({ video }) {
                                     <FontAwesomeIcon className={cx('span-icon-wrapper')} icon={faShare} />
                                 </p>
                             </div>
-                            <strong className={cx('count')}>410</strong>
+                            <strong className={cx('count')}>{video.shares_count}</strong>
                         </button>
                     </div>
                 </div>
