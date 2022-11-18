@@ -10,6 +10,8 @@
     font-family: var(--font-family);
     cursor: pointer;
     background-color: #fff;
+    width: 100px;
+    height: 36px;
     border: 1px solid transparent;
 
     +.wrapper {

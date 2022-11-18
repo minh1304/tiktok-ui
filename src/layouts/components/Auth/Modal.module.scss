@@ -1,0 +1,127 @@
+.Modal-container {
+    // top: 14%;
+    // left: 39%;
+    // border-radius: 8px;
+    // transition: all 300ms cubic-bezier(0.075, 0.82, 0.165, 1) 0s;
+    // transform: none;
+    // margin: auto;
+    // position: relative;
+    // max-height: 693px;
+    // height: 80%;
+    // overflow: hidden;
+    // background-color: rgb(255, 255, 255);
+    inset: 0px;
+    overflow: auto;
+    outline: 0px;
+    transition: all 500ms cubic-bezier(0.075, 0.82, 0.165, 1) 0s;
+    display: flex;
+    opacity: 1;
+    outline: 2px solid transparent;
+    outline-offset: 2px;
+    z-index: 1001;
+    position: fixed;
+
+
+
+}
+.Modal-mask{
+    background: rgba(0, 0, 0, 0.5);
+    position: fixed;
+    inset: 0px;
+}
+
+.Modal-content-container{
+    border-radius: 8px;
+    transition: all 300ms cubic-bezier(0.075, 0.82, 0.165, 1) 0s;
+    transform: none;
+    margin: auto;
+    position: relative;
+    max-height: 693px;
+    height: 80%;
+    overflow: hidden;
+    background-color: rgb(255, 255, 255);
+    z-index: 1001;
+    opacity: 1;
+}
+
+.login-modal{
+    width: 483px;
+    height: 100%;
+    padding: 48px 0px 0px;
+    display: flex;
+    flex-direction: column;
+    overflow-y: auto;
+    padding-top: 34px;
+}
+.Modal-header{
+    padding-top: 3rem;
+    flex-direction: column;
+    display: flex;
+    position: relative;
+}
+.Back-btn{
+    left: 16px;
+    position: absolute;
+    top: 16px;
+    cursor: pointer;
+    transform: unset;
+    font-size: 20px;
+}
+.Close-wrapper{
+    position: absolute;
+    top: 24px;
+    border-radius: 50%;
+    cursor: pointer;
+    display: flex;
+    -webkit-box-align: center;
+    align-items: center;
+    -webkit-box-pack: center;
+    justify-content: center;
+    z-index: 1;
+    right: 24px;
+    width: 24px;
+    height: 24px;
+    background: rgba(22, 24, 35, 0.03);
+}
+.login-container{
+    width: 375px;
+    margin: 0  50px 0 50px;
+    padding: unset;
+}
+.home-container {
+    padding: unset;
+}
+.title{
+    color: rgb(22, 24, 35);
+    font-size: 32px;
+    font-weight: bold;
+    text-align: center;
+    margin-bottom: 16px;
+}
+
+.Box-container{
+    color: rgb(22, 24, 35);
+    font-family: ProximaNova, Arial, Tahoma, PingFangSC, sans-serif;
+    font-weight: 600;
+    border: 1px solid rgba(22, 24, 35, 0.12);
+    font-size: 15px;
+    padding: 0px 12px;
+    display: flex;
+    -webkit-box-align: center;
+    align-items: center;
+    -webkit-box-pack: center;
+    justify-content: center;
+    height: 44px;
+    position: relative;
+    cursor: pointer;
+    margin-bottom: 16px;
+    word-break: keep-all;
+    white-space: nowrap;
+    background: rgb(255, 255, 255);
+}
+.Icon-container{
+    left: 12px;
+    font-size: 20px;
+    position: absolute;
+    display: flex;
+}
