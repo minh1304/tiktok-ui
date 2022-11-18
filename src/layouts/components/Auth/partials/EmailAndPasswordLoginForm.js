@@ -1,6 +1,10 @@
 import { useContext, useState } from 'react';
 import { ModalBodyNameContext } from '~/layouts/components/Header/Header';
+import classNames from 'classnames/bind';
+import styles from '../Modal.module.scss';
+import Button from '~/components/Button';
 // import * as authService from '~/services/authService'
+const cx = classNames.bind(styles);
 
 function EmailAndPasswordLoginForm() {
     const value = useContext(ModalBodyNameContext);
@@ -92,8 +96,34 @@ function EmailAndPasswordLoginForm() {
         </div>
       </div> */}
 
-            <div>
-                <h3>Đang ở trang đăng nhập bằng điện thoại nè</h3>
+            <div className={cx('login-modal')}>
+                <div className={cx('login-container')}>
+                    <div className={cx('home-container')}>
+                        <div className={cx('title')}>Log in</div>
+                        <div className={cx('description')}>Email or user name</div>
+                        <form>
+                            <div className={cx('Div-input-container')}>
+                                <input
+                                    type={'text'}
+                                    placeholder={'Email or username'}
+                                    name={'username'}
+                                    className={cx('input-container')}
+                                />
+                            </div>
+                            <div className={cx('Div-container')}>
+                                <input
+                                    type={'password'}
+                                    placeholder={'Password'}
+                                    className={cx('input-container')}
+                                />
+                            </div>
+                            <a href='/login/email/forget-password' className={cx('forget-pass')}>
+                                Forgot password?
+                            </a>
+                            <Button primary className={cx('Submit-btn')}>Log in</Button>
+                        </form>
+                    </div>
+                </div>
             </div>
         </>
     );
