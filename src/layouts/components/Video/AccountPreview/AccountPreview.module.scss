@@ -1,6 +1,7 @@
 .wrapper {
     width: 320px;
     padding: 20px;
+    height: 233px;
 }
 .header {
     display: flex;
@@ -26,6 +27,7 @@
     font-size: 1.8rem;
     display: flex;
     align-items: center;
+    padding-bottom: 8px;
 }
 .check {
     font-size: 1.4rem;

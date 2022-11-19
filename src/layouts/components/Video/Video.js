@@ -73,7 +73,7 @@ function Video({ video }) {
                     <Tippy
                         interactive
                         delay={[800, 500]}
-                        offset={[-10, 5]}
+                        offset={[-80, 30]}
                         placement="bottom-start"
                         render={renderPreview}
                     >
@@ -85,7 +85,7 @@ function Video({ video }) {
                     <Tippy
                         interactive
                         delay={[800, 500]}
-                        offset={[-10, 5]}
+                        offset={[-220, 30]}
                         placement="bottom-start"
                         render={renderPreview}
                     >
