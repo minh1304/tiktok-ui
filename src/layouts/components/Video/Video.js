@@ -2,7 +2,7 @@ import { Link } from 'react-router-dom';
 import classNames from 'classnames/bind';
 import styles from './Video.module.scss';
 import Tippy from '@tippyjs/react/headless';
-import { useState } from 'react';
+import { useContext, useState } from 'react';
 
 import { Wrapper as PopperWrapper } from '~/components/Popper';
 import config from '~/config';
@@ -10,8 +10,9 @@ import Image from '~/components/Image';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCheckCircle, faCommentDots, faHeart, faMusic, faShare } from '@fortawesome/free-solid-svg-icons';
 import Button from '~/components/Button';
-
 import AccountPreview from './AccountPreview';
+import { AuthUserContext } from '~/App';
+import * as userService from '~/services/userService';
 
 const cx = classNames.bind(styles);
 
@@ -20,13 +21,14 @@ function Video({ video }) {
         return (
             <div tabIndex="-1" {...prop}>
                 <PopperWrapper>
-                    <AccountPreview data={video} />
+                    <AccountPreview data={video} followed={following} setFollowed={setFollowing}/>
                 </PopperWrapper>
             </div>
         );
     };
-    const [like, setLike] = useState(false);
-    const [following, setFollowing] = useState(false);
+    const [like, setLike] = useState(video.is_like); //api chưa có
+    const [following, setFollowing] = useState(video.user.is_followed);
+    const authUser = useContext(AuthUserContext);
     const handleLike = () => {
         if (like) {
             setLike(false);
@@ -35,21 +37,39 @@ function Video({ video }) {
         }
     };
     const handleFollow = () => {
+        if (!authUser || !authUser.meta.token) {
+            alert('Please login!');
+            return;
+        }
         if (following) {
-            setFollowing(false);
+            userService
+                .unfollowAnUser({ userId: video.user.id, accessToken: authUser.meta.token })
+                .then((res) => {
+                    setFollowing(res.data.is_followed);
+                })
+                .catch((error) => {
+                    console.log(error);
+                });
         } else {
-            setFollowing(true);
+            userService
+                .followAnUser({ userId: video.user.id, accessToken: authUser.meta.token })
+                .then((res) => {
+                    setFollowing(res.data.is_followed);
+                })
+                .catch((error) => {
+                    console.log(error);
+                });
         }
     };
     return (
         <div className={cx('container')}>
-            <Link to={config.routes.following}>
+            <a href={`/@${video.user.nickname}`}>
                 <Tippy interactive delay={[800, 500]} offset={[-10, 5]} placement="bottom-start" render={renderPreview}>
                     <Image className={cx('avatar')} src={video.user.avatar} alt={video.user.nickname} />
                 </Tippy>
-            </Link>
+            </a>
             <div>
-                <Link to={config.routes.following} className={cx('item-info')}>
+                <a href={`/@${video.user.nickname}`} className={cx('item-info')}>
                     <Tippy
                         interactive
                         delay={[800, 500]}
@@ -73,7 +93,7 @@ function Video({ video }) {
                             {video.user.first_name} {video.user.last_name}
                         </p>
                     </Tippy>
-                </Link>
+                </a>
 
                 <div className={cx('description')}>{video.description}</div>
                 <div className={cx('link-music')}>

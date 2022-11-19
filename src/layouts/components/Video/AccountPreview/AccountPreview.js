@@ -1,21 +1,62 @@
 import PropTypes from 'prop-types';
+import { useState, useContext } from 'react';
 import classNames from 'classnames/bind';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCheckCircle } from '@fortawesome/free-solid-svg-icons';
 
 import styles from './AccountPreview.module.scss';
 import Button from '~/components/Button';
-
+import { AuthUserContext } from '~/App';
+import * as userService from '~/services/userService'
 const cx = classNames.bind(styles);
 
-function AccountPreview({ data }) {
+function AccountPreview({ data, followed, setFollowed }) {
+
+    const authUser = useContext(AuthUserContext)
+    // const [following, setFollowing] = useState(data.user.is_followed);
+    const handleFollow = (e) => {
+        e.preventDefault()
+        if (!authUser || !authUser.meta.token) {
+            alert('Please login!');
+            return;
+        }
+        if (followed) {
+            userService
+                .unfollowAnUser({ userId: data.user.id, accessToken: authUser.meta.token })
+                .then((res) => {
+                    setFollowed(res.data.is_followed);
+                })
+                .catch((error) => {
+                    console.log(error);
+                });
+        } else {
+            userService
+                .followAnUser({ userId: data.user.id, accessToken: authUser.meta.token })
+                .then((res) => {
+                    setFollowed(res.data.is_followed);
+                })
+                .catch((error) => {
+                    console.log(error);
+                });
+        }
+    };
     return (
         <div className={cx('wrapper')}>
             <div className={cx('header')}>
                 <img className={cx('avatar')} src={data.user.avatar} alt="" />
-                <Button className={cx('follow-btn')} outline>
-                    Follow
-                </Button>
+                {(!followed)  && (
+                    <Button onClick={handleFollow} outline className={cx('follow-btn')}>
+                        Follow
+                    </Button>
+                )}
+                {followed && (
+                    <Button onClick={handleFollow} round className={cx('following-btn')}>
+                        Following
+                    </Button>
+                )}
+
+
+
             </div>
             <div className={cx('body')}>
                 <p className={cx('nickname')}>
@@ -32,7 +73,7 @@ function AccountPreview({ data }) {
                     <span className={cx('label')}>Likes</span>
                 </p>
                 <p className={cx('content-bio')}>
-                    <span >{data.user.bio}</span>
+                    <span>{data.user.bio}</span>
                 </p>
             </div>
         </div>

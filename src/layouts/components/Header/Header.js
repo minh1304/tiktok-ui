@@ -74,6 +74,9 @@ function Header({ wider }) {
               localStorage.removeItem('user')
               window.location.reload()
               break
+            case '/@profile': 
+                window.location.href =`/@${currentUser.data.nickname}`
+                break
             default:
                 break
         }
@@ -88,7 +91,7 @@ function Header({ wider }) {
         {
             icon: <FontAwesomeIcon icon={faUser} />,
             title: 'View profile',
-            to: '/@theanh28',
+            to: '/@profile',
         },
         {
             icon: <FontAwesomeIcon icon={faCoins} />,
@@ -196,9 +199,8 @@ function Header({ wider }) {
                         {currentUser ? (
                             <Image
                                 className={cx('user-avatar')}
-                                alt="Nguyen Van A"
-                                // src="https://p16-sign-va.tiktokcdn.com/tos-useast2a-avt-0068-giso/229c49e6a5e7783b16b5e994ff2f6de1~c5_100x100.jpeg?x-expires=1666893600&x-signature=oxWlcnGZ8Hb2sW8%2FOrk33RZA0Y8%3D"
-                                src="https://p16-sign-va.tiktokcdn.com/tos-useast2a-avt-0068-aiso/65d3c6b1d1e205c75536ccf1f26d552d~c5_100x100.jpeg?x-expires=1667368800&x-signature=7bJNrToy%2Bd%2BZOWj5msDadcrH4H4%3D"
+                                alt={currentUser.data.nickname}
+                                src={currentUser.data.avatar}
                             ></Image>
                         ) : (
                             <button className={cx('more-btn')}>

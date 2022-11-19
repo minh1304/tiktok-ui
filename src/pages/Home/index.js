@@ -1,30 +1,28 @@
 import classNames from 'classnames/bind';
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useContext } from 'react';
 
 import Video from '~/layouts/components/Video';
 import styles from './Home.module.scss';
 import * as timelineService from '~/services/timelineService';
+import { AuthUserContext } from '~/App';
 
 const cx = classNames.bind(styles);
 const INIT_PAGE = 1;
 function Home() {
     const [page, setPage] = useState(INIT_PAGE);
     const [videos, setVideos] = useState([]);
+    const authUser = useContext(AuthUserContext);
+    const accessToken = authUser && authUser.meta.token;
     useEffect(() => {
         timelineService
-            .getVideos({ type: 'for-you', page })
-            // .then((res) => {
-            //     if (Array.isArray(res.data)) {
-            //         setVideos((prev) => [...prev, ...res.data]);
-            //     }
-            // })
+            .getVideos({ type: 'for-you', page, accessToken: accessToken })
             .then((data) => {
                 setVideos((prev) => [...prev, ...data]);
             })
             .catch((error) => {
                 console.log(error);
             });
-    }, [page]);
+    }, [page, accessToken]);
     const handleSeeMore = () => {
         setPage(page + 1);
     };
