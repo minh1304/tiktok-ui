@@ -1,4 +1,4 @@
-import { useEffect, useState, createContext } from 'react';
+import { useEffect, useState, createContext, useContext } from 'react';
 import classNames from 'classnames/bind';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {
@@ -30,6 +30,8 @@ import Login from '~/layouts/components/Auth/partials/Login';
 import EmailAndPasswordLoginForm from '../Auth/partials/EmailAndPasswordLoginForm';
 import PhoneAndCodeLoginForm from '../Auth/partials/EmailAndPasswordLoginForm';
 
+import { AuthUserContext } from '~/App'; 
+ 
 const cx = classNames.bind(styles);
 export const ModalBodyNameContext = createContext();
 const MENU_ITEMS = [
@@ -63,11 +65,20 @@ const MENU_ITEMS = [
     },
 ];
 function Header({ wider }) {
-    const currentUser = false;
+    const currentUser = useContext(AuthUserContext);
 
     //handle logic
     const handleMenuChange = (menuItem) => {
-        console.log(menuItem);
+        switch (menuItem.to) {
+            case '/logout':
+              localStorage.removeItem('user')
+              window.location.reload()
+              break
+            default:
+                break
+        }
+
+
     };
     const [showAuthModal, setShowAuthModal] = useState(false);
     const [children, setChildren] = useState(<Login />);
