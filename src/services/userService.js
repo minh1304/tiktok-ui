@@ -12,6 +12,21 @@ export const getSuggested = async ({page , perPage }) => {
         console.log(error);
     }
 };
+export const getFollowed = async ({page, accessToken}) => {
+    try {
+        const res = await httpRequest.get('me/followings', {
+            headers: {
+              Authorization: `Bearer ${accessToken}`,
+            },
+            params: {
+                page,
+            },
+        });
+        return res.data;
+    } catch (error) {
+        console.log(error);
+    }
+};
 
 
 export const followAnUser = async ({ userId, accessToken }) => {
