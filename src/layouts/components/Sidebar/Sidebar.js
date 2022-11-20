@@ -1,3 +1,4 @@
+import { useContext } from 'react';
 import classNames from 'classnames/bind';
 import styles from './Sidebar.module.scss';
 import Menu, { MenuItem } from './Menu';
@@ -11,11 +12,15 @@ import {
 } from '~/components/Icons';
 import config from '~/config';
 import SuggestedAccounts from '~/components/SuggestedAccounts';
+import FollowedAccounts from '~/components/FollowedAccounts';
 import Discover from '~/components/Discover';
+import { AuthUserContext } from '~/App';
+import Button from '~/components/Button';
 
 const cx = classNames.bind(styles);
 
 function Sidebar() {
+    const authUser = useContext(AuthUserContext)
     return (
         <div className={cx('wrapper')}>
             <div className={cx('body')}>
@@ -39,7 +44,20 @@ function Sidebar() {
                         activeIcon={<LiveActiveIcon />}
                     />
                 </Menu>
+                {
+                    !authUser && (
+                        <div className={cx('frame-container')} style={{width: '340px'}}>
+                            <p className='login-hint'>Log in to follow creators, like videos, and view comments.</p>
+                            <Button outline className={cx('login-btn')}>Log in</Button>
+                        </div>
+                    )
+                        
+                    
+                }
+                {/* Suggested  */}
                 <SuggestedAccounts label="Suggested accounts" />
+                {/* Follow */}
+                <FollowedAccounts label="Following accounts" />
                 <Discover label="Discover" />
             </div>
         </div>

@@ -18,8 +18,29 @@
     perspective-origin: right top;
     top: 61px;
     bottom: 0;
-    width: 340px;
+    width: 348px;
     position: fixed;
     z-index: 99;
     padding-right: 8px;
+}
+.frame-container{
+    border-top: 1px solid #e5e5e5;
+    position: relative;
+    padding: 20px 8px 24px 8px;
+    margin: 0;
+}
+.login-hint{
+
+    color: #16182300;
+    font-size: 16px;
+    line-height: 22px;
+}
+
+.login-btn{
+    margin-top: 20px;
+    width: 324px;
+    min-width: 168px;
+    min-height: 48px;
+    font-size: 18px;
+    line-height: 25px;
 }
