@@ -16,7 +16,6 @@ import FollowedAccounts from '~/components/FollowedAccounts';
 import Discover from '~/components/Discover';
 import { AuthUserContext } from '~/App';
 import Button from '~/components/Button';
-import OpenLogin from '~/components/OpenLogin';
 
 const cx = classNames.bind(styles);
 
@@ -64,7 +63,8 @@ function Sidebar() {
                 {/* Suggested  */}
                 <SuggestedAccounts label="Suggested accounts" />
                 {/* Follow */}
-                <FollowedAccounts label="Following accounts" />
+                {authUser &&
+                    <FollowedAccounts label="Following accounts" />}
                 <Discover label="Discover" />
             </div>
         </div>
