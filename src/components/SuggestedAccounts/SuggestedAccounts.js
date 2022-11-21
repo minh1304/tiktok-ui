@@ -23,7 +23,7 @@ function SuggestedAccounts({ label }) {
             userService
                 .getSuggested({ page: 1, perPage: 15, accessToken: accessToken })
                 .then((data) => {
-                    data.map((acc) => acc.is_followed && console.log(acc.id))
+                    data.map((acc) => acc.is_followed)
                     //get 5 object first
                     let data2 = data.filter(acc => !acc.is_followed)
                     data2.splice(5)

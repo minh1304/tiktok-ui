@@ -1,5 +1,59 @@
+import classNames from 'classnames/bind';
+import { useState, useEffect, useContext } from 'react';
+
+import Video from '~/layouts/components/Video';
+import styles from './Following.module.scss';
+import * as timelineService from '~/services/timelineService';
+import { AuthUserContext } from '~/App';
+
+const cx = classNames.bind(styles);
+const INIT_PAGE = 1;
 function Following() {
-    return <h2>Following page</h2>;
+    const [page, setPage] = useState(INIT_PAGE);
+    const [videos, setVideos] = useState([]);
+    const authUser = useContext(AuthUserContext);
+
+    const accessToken = authUser && authUser.meta.token;
+    useEffect(() => {
+        timelineService
+            .getVideos({ type: 'for-you', page, accessToken: accessToken })
+            .then((data) => {
+                setVideos((prev) => [...prev, ...data]);
+            })
+            .catch((error) => {
+                console.log(error);
+            });
+    }, [page, accessToken]);
+    const handleSeeMore = () => {
+        setPage(page + 1);
+    };
+
+    return (
+        <div className={cx('wrapper')}>
+            <div className={cx('body')}>
+                {authUser && (
+                    <>
+                        {videos.map(
+                            (video) => video.user.is_followed && <Video key={video.id} video={video} isFollow={true} />,
+                        )}
+                        <p onClick={handleSeeMore} className={cx('see-more')}>
+                            See more video
+                        </p>
+                    </>
+                )}
+                {!authUser && (
+                    <>
+                        {videos.map(
+                            (video) => <Video key={video.id} video={video} />,
+                        )}
+                        <p onClick={handleSeeMore} className={cx('see-more')}>
+                            See more video
+                        </p>
+                    </>
+                )}
+            </div>
+        </div>
+    );
 }
 
 export default Following;

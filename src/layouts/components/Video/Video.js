@@ -16,7 +16,7 @@ import * as userService from '~/services/userService';
 
 const cx = classNames.bind(styles);
 
-function Video({ video }) {
+function Video({ video, isFollow }) {
     const renderPreview = (prop) => {
         return (
             <div tabIndex="-1" {...prop}>
@@ -99,8 +99,7 @@ function Video({ video }) {
                 <div className={cx('link-music')}>
                     <Link to={config.routes.following}>
                         <h4>
-                            <FontAwesomeIcon className={cx('music')} icon={faMusic} /> Last Christmas x Hưng Hack remix
-                            - Quang Huy ⚜️
+                            <FontAwesomeIcon className={cx('music')} icon={faMusic}/>{video.music}
                         </h4>
                     </Link>
                 </div>
@@ -150,16 +149,20 @@ function Video({ video }) {
                     </div>
                 </div>
             </div>
-            {!following && (
+            {/* isFollow in page Following 
+                if isFollow = true then don't see Button
+            */}
+            {(!following && !isFollow) && (
                 <Button onClick={handleFollow} outline className={cx('follow-btn')}>
                     Follow
                 </Button>
             )}
-            {following && (
+            {(following && !isFollow) && (
                 <Button onClick={handleFollow} round className={cx('following-btn')}>
                     Following
                 </Button>
             )}
+
 
             {/* <div className="flex">
             <div className="mr-4">
