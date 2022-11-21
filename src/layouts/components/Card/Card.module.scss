@@ -1,0 +1,108 @@
+.userCard {
+    margin-right: 18px;
+    width: 216px;
+    height: 302px;
+    border-radius: 8px;
+    margin-bottom: 18px;
+    display: block;
+    float: left;
+    overflow: hidden;
+}
+.aUserCard {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    background-color: rgba(22, 24, 35, 0.06);
+}
+.divContainer {
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    position: relative;
+    background-color: rgba(22, 24, 35, 0.06);
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center center;
+    display: flex;
+    -webkit-box-align: center;
+    align-items: center;
+    -webkit-box-pack: center;
+    justify-content: center;
+}
+.imgPoster {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+.divInfoContainer {
+    position: absolute;
+    background: transparent;
+    bottom: 0px;
+    width: 100%;
+    height: 200px;
+    display: flex;
+    box-sizing: border-box;
+    -webkit-box-pack: end;
+    justify-content: flex-end;
+    -webkit-box-align: center;
+    align-items: center;
+    flex-direction: column;
+    padding: 30px 12px 20px;
+    text-align: center;
+}
+.avtContainer {
+    margin-bottom: 14px;
+    flex-shrink: 0;
+    width: 48px;
+    height: 48px;
+
+    display: inline-block;
+    box-sizing: border-box;
+    margin: 0px;
+    padding: 0px;
+    font-feature-settings: 'tnum';
+    position: relative;
+    overflow: hidden;
+    color: rgb(255, 255, 255);
+    white-space: nowrap;
+    text-align: center;
+    vertical-align: middle;
+    line-height: 32px;
+    border-radius: 50%;
+    background-color: rgba(136, 136, 136, 0.5);
+}
+.img-avatar {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+.name {
+    color: rgb(255, 255, 255);
+    font-family: ProximaNova, Arial, Tahoma, PingFangSC, sans-serif;
+    font-weight: 700;
+    font-size: 18px;
+    line-height: 25px;
+    width: 100%;
+    margin: 0px;
+    text-align: center;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+.nickname {
+    color: rgb(255, 255, 255);
+    max-width: 100%;
+    margin: 0px;
+    display: flex;
+    -webkit-box-align: center;
+    align-items: center;
+    -webkit-box-pack: center;
+    justify-content: center;
+    overflow: hidden;
+}
+.buttonContainer {
+    margin-top: 8px;
+}
+.buttonFollow {
+    width: 164px;
+}

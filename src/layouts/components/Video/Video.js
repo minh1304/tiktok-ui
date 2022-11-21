@@ -26,7 +26,7 @@ function Video({ video, isFollow }) {
             </div>
         );
     };
-    const [like, setLike] = useState(video.is_like); //api chưa có
+    const [like, setLike] = useState(video.is_like); //api don't work
     const [following, setFollowing] = useState(video.user.is_followed);
     const authUser = useContext(AuthUserContext);
     const handleLike = () => {
