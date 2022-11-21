@@ -1,7 +1,10 @@
 import * as httpRequest from '~/untils/httpRequest';
-export const getSuggested = async ({page , perPage }) => {
+export const getSuggested = async ({page , perPage, accessToken }) => {
     try {
         const res = await httpRequest.get('users/suggested', {
+            headers: {
+              Authorization: `Bearer ${accessToken}`,
+            },
             params: {
                 page,
                 per_page:perPage
