@@ -44,7 +44,6 @@ function FollowedAccounts({ label }) {
             setPerPage(INIT_PAGE);
             setSeeAll(true);
         } else {
-            console.log(followedUser.length);
             setPerPage((prevPage) => prevPage + 1);
         }
     }

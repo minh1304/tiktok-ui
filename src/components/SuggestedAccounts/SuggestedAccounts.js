@@ -8,23 +8,26 @@ import { AuthUserContext } from '~/App';
 const cx = classNames.bind(styles);
 function SuggestedAccounts({ label }) {
     const authUser = useContext(AuthUserContext);
-    const accessToken = authUser && authUser.meta.token ? authUser.meta.token: '';
+    const accessToken = authUser && authUser.meta.token ? authUser.meta.token : '';
     const [suggestedUser, setSuggestedUser] = useState([]);
     const [seeAll, setSeeAll] = useState(false);
     useEffect(() => {
         if (seeAll) {
             userService
-                .getSuggested({ page: 1, perPage: 16, accessToken: accessToken })
+                .getSuggested({ page: 1, perPage: 20, accessToken: accessToken })
                 .then((data) => {
                     setSuggestedUser(data);
                 })
                 .catch((error) => console.log(error));
         } else {
             userService
-                .getSuggested({ page: 1, perPage: 5, accessToken: accessToken })
+                .getSuggested({ page: 1, perPage: 15, accessToken: accessToken })
                 .then((data) => {
-                    
-                    setSuggestedUser(data);
+                    data.map((acc) => acc.is_followed && console.log(acc.id))
+                    //get 5 object first
+                    let data2 = data.filter(acc => !acc.is_followed)
+                    data2.splice(5)
+                    setSuggestedUser(data2);
                 })
                 .catch((error) => console.log(error));
         }
@@ -32,9 +35,13 @@ function SuggestedAccounts({ label }) {
     return (
         <div className={cx('wrapper')}>
             <p className={cx('label')}>{label}</p>
-            {suggestedUser.map((account) => (
-                <AccountItem key={account.id} data={account} />
-            ))}
+            {
+                //if followed then don't view
+                suggestedUser.map((account) => 
+                    !account.is_followed && 
+                        <AccountItem key={account.id} data={account} />
+                )
+            }
 
             {!seeAll && (
                 <p onClick={() => setSeeAll(true)} className={cx('more-btn')}>
