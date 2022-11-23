@@ -19,11 +19,11 @@ import Button from '~/components/Button';
 
 const cx = classNames.bind(styles);
 
-function Sidebar() {
+function Sidebar({ wider }) {
     const authUser = useContext(AuthUserContext);
     return (
-        <div className={cx('wrapper')}>
-            <div className={cx('body')}>
+        <div className={wider? cx('wrapper-profile') : cx('wrapper')}>
+            <div className={ wider? cx('body-profile') : cx('body')}>
                 <Menu>
                     <MenuItem
                         title="For You"
@@ -45,11 +45,11 @@ function Sidebar() {
                     />
                 </Menu>
                 {!authUser && (
-                    <div className={cx('frame-container')} style={{ width: '340px' }}>
-                        <p className="login-hint">Log in to follow creators, like videos, and view comments.</p>
+                    <div className={cx('frame-container')} style={ wider? {width:'232px'}: { width: '340px' }}>
+                        <p className={cx('login-hint')}>Log in to follow creators, like videos, and view comments.</p>
                         <Button
                             outline
-                            className={cx('login-btn')}
+                            className={wider? cx('login-btn-wider'): cx('login-btn')}
                             onClick={() => {
                                 alert('Please login!');
                             }}
@@ -59,7 +59,6 @@ function Sidebar() {
                     </div>
                 )}
                 {/* <OpenLogin  /> */}
-
                 {/* Suggested  */}
                 <SuggestedAccounts label="Suggested accounts" />
                 {/* Follow */}

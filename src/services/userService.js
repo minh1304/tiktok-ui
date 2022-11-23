@@ -38,7 +38,7 @@ export const followAnUser = async ({ userId, accessToken }) => {
         headers: {
           Authorization: `Bearer ${accessToken}`,
         },
-      })
+      });
     } catch (error) {
       console.log(error)
     }
@@ -51,6 +51,19 @@ export const followAnUser = async ({ userId, accessToken }) => {
           Authorization: `Bearer ${accessToken}`,
         },
       })
+    } catch (error) {
+      console.log(error)
+    }
+  }
+
+  export const getUserProfile = async ({ nickname, accessToken }) => {
+    try {
+      const res = await httpRequest.get(`users/@${nickname}`, {
+        headers: {
+          Authorization: `Bearer ${accessToken}`,
+        },
+      })
+      return res.data
     } catch (error) {
       console.log(error)
     }

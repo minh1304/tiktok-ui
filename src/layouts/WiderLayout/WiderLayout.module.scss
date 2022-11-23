@@ -10,9 +10,11 @@
     max-width: 100%;
     display: flex;
     margin-top: var(--default-layout-header-height);
-    // padding: 0 var(--default-layout-horizontal-spacer);
+
 
 }
 .content {
-    flex: 1;
+    flex: 1 1;
+    padding-left: 10px;
 }
+

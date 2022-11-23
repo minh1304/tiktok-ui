@@ -8,6 +8,15 @@
     position: relative;
 
 }
+.wrapper-profile{
+    width: 232px;
+    padding: 20px 0px 26px 8px;
+    margin-left: -18px;
+    display: flex;
+
+    align-items: stretch;
+    position: relative;
+}
 .body{
     padding-top: 16px;
     overflow-x: hidden;
@@ -23,6 +32,21 @@
     z-index: 99;
     padding-right: 8px;
 }
+.body-profile{
+    padding-top: 16px;
+    overflow-x: hidden;
+    overflow-y: auto;
+    perspective: 1px;
+    transform-style: preserve-3d;
+    padding-right: 12px;
+    perspective-origin: right top;
+    top: 61px;
+    bottom: 0;
+    width: 232px;
+    position: fixed;
+    z-index: 99;
+    padding-right: 8px;
+}
 .frame-container{
     border-top: 1px solid #e5e5e5;
     position: relative;
@@ -31,7 +55,7 @@
 }
 .login-hint{
 
-    color: #16182300;
+    color: #16182380;
     font-size: 16px;
     line-height: 22px;
 }
@@ -39,6 +63,14 @@
 .login-btn{
     margin-top: 20px;
     width: 324px;
+    min-width: 168px;
+    min-height: 48px;
+    font-size: 18px;
+    line-height: 25px;
+}
+.login-btn-wider{
+    margin-top: 20px;
+    width: 208px;
     min-width: 168px;
     min-height: 48px;
     font-size: 18px;
