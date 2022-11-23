@@ -10,7 +10,7 @@ import { AuthUserContext } from '~/App';
 import { useContext, useState } from 'react';
 const cx = classNames.bind(styles);
 
-function AccountPreview({ data }) {
+function AccountPreview({ data}) {
     const authUser = useContext(AuthUserContext);
     const [followed, setFollowed] = useState(data.is_followed);
     const handleFollow = (e) => {

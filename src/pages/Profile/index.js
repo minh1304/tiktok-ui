@@ -7,6 +7,8 @@ import * as userService from '~/services/userService';
 import { AuthUserContext } from '~/App';
 import Button from '~/components/Button';
 import { UnFollowIcon } from '~/components/Icons';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faCheckCircle } from '@fortawesome/free-solid-svg-icons';
 
 const cx = classNames.bind(styles);
 
@@ -65,7 +67,9 @@ function Profile() {
                         <Image src={user.avatar} className={cx('img-avt')} />
                     </div>
                     <div className={cx('title-container')}>
-                        <h2 className={cx('userName')}>{user.nickname}</h2>
+                        <h2 className={cx('userName')}>{user.nickname}
+                        {user.tick && <FontAwesomeIcon className={cx('check')} icon={faCheckCircle} />}
+                        </h2>
                         <h1 className={cx('userFullName')}>
                             {user.first_name} {user.last_name}
                         </h1>

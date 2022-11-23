@@ -6,15 +6,15 @@ import Sidebar from '../components/Sidebar';
 const cx = classNames.bind(styles);
 function WiderLayout({ children }) {
     return (
-      <div className={cx('wrapper')}>
-        <Header wider={true} />
-        <div className={cx('container')}>
-            <Sidebar wider={true} />
-          <div className={cx('content')}>{children}</div>
-        </div>
-      </div>
-    )
-  }
+            <div className={cx('wrapper')}>
+                <Header wider={true} />
+                <div className={cx('container')}>
+                    <Sidebar wider={true} />
+                    <div className={cx('content')}>{children}</div>
+                </div>
+            </div>
+    );
+}
 WiderLayout.propTypes = {
     children: PropTypes.node.isRequired,
 };

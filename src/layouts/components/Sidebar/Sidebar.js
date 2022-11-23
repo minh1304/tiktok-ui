@@ -1,4 +1,4 @@
-import { useContext, useState } from 'react';
+import { useContext, useState} from 'react';
 import classNames from 'classnames/bind';
 import styles from './Sidebar.module.scss';
 import Menu, { MenuItem } from './Menu';
@@ -19,7 +19,7 @@ import Button from '~/components/Button';
 
 const cx = classNames.bind(styles);
 
-function Sidebar({ wider }) {
+function Sidebar({wider}) {
     const authUser = useContext(AuthUserContext);
     return (
         <div className={wider? cx('wrapper-profile') : cx('wrapper')}>
@@ -60,7 +60,7 @@ function Sidebar({ wider }) {
                 )}
                 {/* <OpenLogin  /> */}
                 {/* Suggested  */}
-                <SuggestedAccounts label="Suggested accounts" />
+                <SuggestedAccounts wider={wider} label="Suggested accounts" />
                 {/* Follow */}
                 {authUser &&
                     <FollowedAccounts label="Following accounts" />}
