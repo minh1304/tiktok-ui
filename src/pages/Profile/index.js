@@ -1,16 +1,65 @@
 import { useParams } from 'react-router-dom';
 import classNames from 'classnames/bind';
 import { useContext, useEffect, useState } from 'react';
+import Tippy from '@tippyjs/react/headless';
+
 import Image from '~/components/Image';
 import styles from './Profile.module.scss';
 import * as userService from '~/services/userService';
 import { AuthUserContext } from '~/App';
 import Button from '~/components/Button';
-import { UnFollowIcon } from '~/components/Icons';
+import { Wrapper as PopperWrapper } from '~/components/Popper';
+import {
+    BlockIcon,
+    CopyIcon,
+    FBIcon,
+    HrefIcon,
+    ReportIcon,
+    ShareIcon,
+    TwitterIcon2,
+    UnFollowIcon,
+    UserMoreIcon,
+    WhatsApp,
+} from '~/components/Icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCheckCircle } from '@fortawesome/free-solid-svg-icons';
-
+import Share from './Share';
+import More from './More';
 const cx = classNames.bind(styles);
+const MENU_ITEMS = [
+    {
+        title: 'Embed',
+        icon: <HrefIcon />,
+    },
+    {
+        title: 'Share to Facebook',
+        icon: <FBIcon />,
+    },
+    {
+        title: 'Share to WhatsApp',
+        icon: <WhatsApp />,
+    },
+    {
+        title: 'Share to Twitter',
+        icon: <TwitterIcon2 />,
+    },
+    {
+        title: 'Copy link',
+        icon: <CopyIcon />,
+    },
+];
+const MORE_ITEMS = [
+    {
+        title: 'Report',
+        icon: <ReportIcon />,
+    },
+    {
+        title: 'Block',
+        icon: <BlockIcon />,
+    },
+
+];
+
 
 function Profile() {
     const authUser = useContext(AuthUserContext);
@@ -59,6 +108,24 @@ function Profile() {
     const handleOpenMess = () => {
         alert('This function has not been implemented yet');
     };
+    const renderPreview = (prop) => {
+        return (
+            <div tabIndex="-1" {...prop}>
+                <PopperWrapper>
+                    <Share items={MENU_ITEMS} />
+                </PopperWrapper>
+            </div>
+        );
+    };
+    const renderMore = (prop) => {
+        return (
+            <div tabIndex="-1" {...prop}>
+                <PopperWrapper>
+                    <More items={MORE_ITEMS} />
+                </PopperWrapper>
+            </div>
+        );
+    };
     return (
         <div className={cx('content')}>
             <div className={cx('header')}>
@@ -67,8 +134,9 @@ function Profile() {
                         <Image src={user.avatar} className={cx('img-avt')} />
                     </div>
                     <div className={cx('title-container')}>
-                        <h2 className={cx('userName')}>{user.nickname}
-                        {user.tick && <FontAwesomeIcon className={cx('check')} icon={faCheckCircle} />}
+                        <h2 className={cx('userName')}>
+                            {user.nickname}
+                            {user.tick && <FontAwesomeIcon className={cx('check')} icon={faCheckCircle} />}
                         </h2>
                         <h1 className={cx('userFullName')}>
                             {user.first_name} {user.last_name}
@@ -87,7 +155,7 @@ function Profile() {
                                 )}
                                 {followed && (
                                     <div onClick={handleFollow} className={cx('container-icon')}>
-                                        <UnFollowIcon  />
+                                        <UnFollowIcon />
                                     </div>
                                 )}
                             </div>
@@ -109,6 +177,17 @@ function Profile() {
                     </div>
                 </h2>
                 <h2 className={cx('bio')}>{user.bio}</h2>
+                <Tippy interactive offset={[30, 0]} delay={[300, 300]} placement="bottom-end" render={renderPreview}>
+                    <div className={cx('share-action')}>
+                        <ShareIcon />
+                    </div>
+                </Tippy>
+
+                <Tippy interactive offset={[0, 0]}  delay={[300, 300]} placement="bottom-end" render={renderMore}>
+                    <div className={cx('user-more')}>
+                        <UserMoreIcon />
+                    </div>
+                </Tippy>
             </div>
         </div>
     );

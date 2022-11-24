@@ -1,0 +1,78 @@
+.wrapper {
+    width: 180px;
+    height: 107px;
+    padding: 3px;
+}
+.header {
+    align-items: center;
+    justify-content: space-between;
+}
+.avatar {
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    object-fit: cover;
+}
+.follow-btn {
+    width: 106px;
+    height: 36px;
+    padding: 6px 16px;
+    position: relative;
+}
+
+.nickname {
+    font-size: 1.8rem;
+    display: flex;
+    align-items: center;
+    padding-bottom: 8px;
+}
+.check {
+    font-size: 1.4rem;
+    margin-left: 4px;
+    color: #20d5ec;
+}
+.name {
+    font-size: 1.4rem;
+    font-weight: 600;
+}
+.analytics {
+    margin-top: 8px;
+    font-size: 1.8rem;
+    padding-bottom: 8px;
+}
+
+.value ~ .value {
+    margin-left: 14px;
+}
+.label {
+    color: rgba(22, 24, 35, 0.75);
+}
+.content-bio {
+    width: 280px;
+    border-top: 1px solid #e5e5e5;
+    padding-top: 8px;
+}
+.body:not(:first-child) {
+    // margin-right: 20px;
+    border-top: 1px solid #e5e5e5;
+}
+.body {
+    display: flex;
+    -webkit-box-align: center;
+    align-items: center;
+    padding: 11px 16px;
+    position: relative;
+    align-items: center;
+    height: 48px;
+    &:hover {
+        background: rgba(22, 24, 35, 0.03);
+        text-decoration: none;
+    }
+}
+.icon {
+}
+.title {
+    margin-left: 12px;
+    font-size: 16px;
+    font-weight: 600;
+}

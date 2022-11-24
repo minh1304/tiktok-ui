@@ -23,7 +23,7 @@ function AccountItem({ data, wider}) {
     };
     return (
         <Link to={`/@${data.nickname}`}>
-            <Tippy interactive delay={[800, 500]}  inlinePositioning  offset={[-20, 0]} placement="bottom" render={renderPreview}>
+            <Tippy interactive delay={[800, 500]} offset={[-20, 0]} placement="bottom" render={renderPreview}>
                 <div className={cx('account-item')}>
                     <Image className={cx('avatar')} src={data.avatar} alt={data.nickname} />
                     <div className={cx('item-info')}>
