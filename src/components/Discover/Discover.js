@@ -6,7 +6,7 @@ import { faHashtag, faMusic } from '@fortawesome/free-solid-svg-icons';
 import { Link } from 'react-router-dom';
 import config from '~/config';
 const cx = classNames.bind(styles);
-function Discover({ label }) {
+function Discover({ label,wider }) {
     //
     const data = [
         {   
@@ -56,7 +56,7 @@ function Discover({ label }) {
             <div className = {cx('discover')}>
                 {data.map((value, index) => (
                     <Link to={config.routes.discover} key={index}>
-                        <button className={cx('btn')}>
+                        <button className={wider?cx('btn2'):cx('btn') }>
                             <p className={cx('icon')}>
                                 {value.icon}
                             </p>  

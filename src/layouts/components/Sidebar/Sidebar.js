@@ -64,7 +64,7 @@ function Sidebar({wider}) {
                 {/* Follow */}
                 {authUser &&
                     <FollowedAccounts label="Following accounts" />}
-                <Discover label="Discover" />
+                <Discover wider={wider} label="Discover" />
             </div>
         </div>
     );
