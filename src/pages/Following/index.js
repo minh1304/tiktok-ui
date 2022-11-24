@@ -15,7 +15,6 @@ function Following() {
     const [videos, setVideos] = useState([]);
     const [suggestedUser, setSuggestedUser] = useState([]);
     const authUser = useContext(AuthUserContext);
-
     const accessToken = authUser && authUser.meta.token;
     useEffect(() => {
         timelineService
@@ -34,12 +33,11 @@ function Following() {
             setSuggestedUser(data);
         })
         .catch((error) => console.log(error));
-
     })
     const handleSeeMore = () => {
         setPage(page + 1);
     };
-
+    // console.log(suggestedUser);
     return (
         <div className={cx('wrapper')}>
             <div className={cx('body')}>

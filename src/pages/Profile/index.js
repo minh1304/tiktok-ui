@@ -25,6 +25,8 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCheckCircle } from '@fortawesome/free-solid-svg-icons';
 import Share from './Share';
 import More from './More';
+import LayoutMain from '~/layouts/components/LayoutsMain';
+
 const cx = classNames.bind(styles);
 const MENU_ITEMS = [
     {
@@ -67,6 +69,7 @@ function Profile() {
     const { nickname } = useParams(); // get nickname
     const [user, setUser] = useState([]);
     const [followed, setFollowed] = useState(user.is_followed);
+    // const [videos, setVideos] = useState([])
 
     useEffect(() => {
         userService
@@ -74,6 +77,8 @@ function Profile() {
             .then((data) => {
                 setUser(data);
                 setFollowed(data.is_followed);
+                // data.videos.map((video)=> )
+                // setVideos(data.videos)
             })
             .catch((error) => {
                 console.log(error);
@@ -126,6 +131,7 @@ function Profile() {
             </div>
         );
     };
+    console.log(user.videos);
     return (
         <div className={cx('content')}>
             <div className={cx('header')}>
@@ -189,6 +195,8 @@ function Profile() {
                     </div>
                 </Tippy>
             </div>
+            
+            <LayoutMain listVideos={user.videos}/>
         </div>
     );
 }

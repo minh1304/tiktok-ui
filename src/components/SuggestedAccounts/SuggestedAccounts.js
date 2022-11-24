@@ -27,11 +27,13 @@ function SuggestedAccounts({ label, wider }) {
                     //get 5 object first
                     let data2 = data.filter(acc => !acc.is_followed)
                     data2.splice(5)
+                    console.log(data2);
                     setSuggestedUser(data2);
                 })
                 .catch((error) => console.log(error));
         }
     }, [seeAll, accessToken]);
+    console.log(suggestedUser);
     return (
         <div className={cx('wrapper')}>
             <p className={cx('label')}>{label}</p>

@@ -28,7 +28,7 @@ function Card({ data }) {
                             muted
                             style={{ position: 'absolute', width: '100%', height: '100%', objectFit: 'cover' }}
                         >
-                            <source src={data.popular_video.file_url} type="video/mp4" />
+                            <source src={data.popular_video.file_url} type="video/mp4"/>
                         </video>
                     }
                     <Image className={cx('imgPoster')} src={data.popular_video.thumb_url} alt={data.nickname} />
