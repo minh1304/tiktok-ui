@@ -58,7 +58,7 @@ function Sidebar({wider, onOpenLogin }) {
                 )}
                 {/* <OpenLogin  /> */}
                 {/* Suggested  */}
-                <SuggestedAccounts wider={wider} label="Suggested accounts" />
+                <SuggestedAccounts wider={wider} label="Suggested accounts" onOpenLogin={onOpenLogin}/>
                 {/* Follow */}
                 {authUser &&
                     <FollowedAccounts label="Following accounts" />}

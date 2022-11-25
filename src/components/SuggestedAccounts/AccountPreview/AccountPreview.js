@@ -10,52 +10,58 @@ import { AuthUserContext } from '~/App';
 import { useContext, useState } from 'react';
 const cx = classNames.bind(styles);
 
-function AccountPreview({ data}) {
+function AccountPreview({ data, onOpenLogin }) {
     const authUser = useContext(AuthUserContext);
     const [followed, setFollowed] = useState(data.is_followed);
     const handleFollow = (e) => {
         e.preventDefault();
-        if (!authUser || !authUser.meta.token) {
-            alert('Please Login!');
+
+        if (followed) {
+            userService
+                .unfollowAnUser({ userId: data.id, accessToken: authUser.meta.token })
+                .then((res) => {
+                    setFollowed(res.data.is_followed);
+                })
+                .catch((error) => {
+                    console.log(error);
+                });
         } else {
-            if (followed) {
-                userService
-                    .unfollowAnUser({ userId: data.id, accessToken: authUser.meta.token })
-                    .then((res) => {
-                        setFollowed(res.data.is_followed);
-                    })
-                    .catch((error) => {
-                        console.log(error);
-                    });
-            } else {
-                userService
-                    .followAnUser({ userId: data.id, accessToken: authUser.meta.token })
-                    .then((res) => {
-                        setFollowed(res.data.is_followed);
-                    })
-                    .catch((error) => {
-                        console.log(error);
-                    });
-            }
+            userService
+                .followAnUser({ userId: data.id, accessToken: authUser.meta.token })
+                .then((res) => {
+                    setFollowed(res.data.is_followed);
+                })
+                .catch((error) => {
+                    console.log(error);
+                });
         }
     };
     return (
         <div className={cx('wrapper')}>
             <div className={cx('header')}>
                 <img className={cx('avatar')} src={data.avatar} alt="" />
-                {!followed && (
+                {authUser && !followed && (
                     <Button className={cx('follow-btn')} primary onClick={handleFollow}>
                         Follow
                     </Button>
                 )}
-                {followed && (
+                {authUser && followed && (
                     <Button className={cx('follow-btn')} round onClick={handleFollow}>
                         Following
                     </Button>
                 )}
-                {/* <Button className={cx('follow-btn')} primary>
-                    Follow
-                </Button> */}
+                {!authUser && (
+                    <Button
+                        className={cx('follow-btn')}
+                        primary
+                        onClick={(e) => {
+                            e.preventDefault();
+                            onOpenLogin();
+                        }}
+                    >
+                        Follow
+                    </Button>
+                )}
             </div>
             <div className={cx('body')}>
                 <p className={cx('nickname')}>

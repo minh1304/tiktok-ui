@@ -5,11 +5,11 @@ import Image from '~/components/Image';
 import { useState } from 'react';
 
 const cx = classNames.bind(styles);
-function Card({ data }) {
+function Card({ data, onOpenLogin }) {
     const [play, setPlay] = useState(false);
     const handleFollow = (e) => {
         e.preventDefault();
-        alert('Please Login!');
+        onOpenLogin();
     };
     const handlePlayCard = () => {
         setPlay(true);

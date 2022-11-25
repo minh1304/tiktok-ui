@@ -6,7 +6,7 @@ import AccountItem from './AccountItem';
 import * as userService from '~/services/userService';
 import { AuthUserContext } from '~/App';
 const cx = classNames.bind(styles);
-function SuggestedAccounts({ label, wider }) {
+function SuggestedAccounts({ label, wider, onOpenLogin }) {
     const authUser = useContext(AuthUserContext);
     const accessToken = authUser && authUser.meta.token ? authUser.meta.token : '';
     const [suggestedUser, setSuggestedUser] = useState([]);
@@ -39,7 +39,7 @@ function SuggestedAccounts({ label, wider }) {
                 //if followed then don't view
                 suggestedUser.map((account) => 
                     !account.is_followed && 
-                        <AccountItem wider={wider} key={account.id} data={account} />
+                        <AccountItem wider={wider} key={account.id} data={account} onOpenLogin={onOpenLogin}/>
                 )
             }
 

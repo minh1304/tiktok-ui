@@ -26,6 +26,7 @@ import { faCheckCircle } from '@fortawesome/free-solid-svg-icons';
 import Share from './Share';
 import More from './More';
 import LayoutMain from '~/layouts/components/LayoutsMain';
+import OpenLogin from '~/components/OpenLogin';
 
 const cx = classNames.bind(styles);
 const MENU_ITEMS = [
@@ -59,9 +60,7 @@ const MORE_ITEMS = [
         title: 'Block',
         icon: <BlockIcon />,
     },
-
 ];
-
 
 function Profile() {
     const authUser = useContext(AuthUserContext);
@@ -86,10 +85,6 @@ function Profile() {
     }, [nickname, accessToken]);
 
     const handleFollow = () => {
-        if (!authUser || !authUser.meta.token) {
-            alert('Please login!');
-            return;
-        }
         if (followed) {
             userService
                 .unfollowAnUser({ userId: user.id, accessToken: authUser.meta.token })
@@ -131,9 +126,20 @@ function Profile() {
             </div>
         );
     };
-    console.log(user.videos);
+    const [openLogin, setOpenLogin] = useState(false);
+    const [close, setClose] = useState(false);
+    const handleOpenLogin = () => {
+        setOpenLogin(true);
+        setClose(false);
+    };
+    const handleClose = () => {
+        setClose(true);
+        setOpenLogin(false);
+    };
+
     return (
         <div className={cx('content')}>
+            {openLogin && !close && <OpenLogin onClose={handleClose} />}
             <div className={cx('header')}>
                 <div className={cx('info')}>
                     <div className={cx('user-avatar')}>
@@ -148,8 +154,13 @@ function Profile() {
                             {user.first_name} {user.last_name}
                         </h1>
                         <div className={cx('followContainer')}>
-                            {!followed && (
+                            {authUser && !followed && (
                                 <Button onClick={handleFollow} primary className={cx('btn-follow')}>
+                                    Follow
+                                </Button>
+                            )}
+                            {!authUser && (
+                                <Button onClick={handleOpenLogin} primary className={cx('btn-follow')}>
                                     Follow
                                 </Button>
                             )}
@@ -189,14 +200,14 @@ function Profile() {
                     </div>
                 </Tippy>
 
-                <Tippy interactive offset={[0, 0]}  delay={[300, 300]} placement="bottom-end" render={renderMore}>
+                <Tippy interactive offset={[0, 0]} delay={[300, 300]} placement="bottom-end" render={renderMore}>
                     <div className={cx('user-more')}>
                         <UserMoreIcon />
                     </div>
                 </Tippy>
             </div>
-            
-            <LayoutMain listVideos={user.videos}/>
+
+            <LayoutMain listVideos={user.videos} />
         </div>
     );
 }

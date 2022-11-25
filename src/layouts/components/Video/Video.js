@@ -16,12 +16,18 @@ import * as userService from '~/services/userService';
 
 const cx = classNames.bind(styles);
 
-function Video({ video, isFollow }) {
+function Video({ video, isFollow, onOpenLogin }) {
+
     const renderPreview = (prop) => {
         return (
             <div tabIndex="-1" {...prop}>
                 <PopperWrapper>
-                    <AccountPreview data={video} followed={following} setFollowed={setFollowing}/>
+                    <AccountPreview
+                        data={video}
+                        followed={following}
+                        setFollowed={setFollowing}
+                        onOpenLogin={onOpenLogin}
+                    />
                 </PopperWrapper>
             </div>
         );
@@ -37,11 +43,7 @@ function Video({ video, isFollow }) {
         }
     };
     const handleFollow = () => {
-        if (!authUser || !authUser.meta.token) {
-            alert('Please login!');
-            return;
-        }
-        if (following) {
+        if (following & authUser) {
             userService
                 .unfollowAnUser({ userId: video.user.id, accessToken: authUser.meta.token })
                 .then((res) => {
@@ -99,7 +101,8 @@ function Video({ video, isFollow }) {
                 <div className={cx('link-music')}>
                     <Link to={config.routes.following}>
                         <h4>
-                            <FontAwesomeIcon className={cx('music')} icon={faMusic}/>{video.music}
+                            <FontAwesomeIcon className={cx('music')} icon={faMusic} />
+                            {video.music}
                         </h4>
                     </Link>
                 </div>
@@ -152,17 +155,21 @@ function Video({ video, isFollow }) {
             {/* isFollow in page Following 
                 if isFollow = true then don't see Button
             */}
-            {(!following && !isFollow) && (
+            {authUser && !following && !isFollow && (
                 <Button onClick={handleFollow} outline className={cx('follow-btn')}>
                     Follow
                 </Button>
             )}
-            {(following && !isFollow) && (
+            {authUser && following && !isFollow && (
                 <Button onClick={handleFollow} round className={cx('following-btn')}>
                     Following
                 </Button>
             )}
-
+            {!authUser && (
+                <Button onClick={onOpenLogin} outline className={cx('follow-btn')}>
+                    Follow
+                </Button>
+            )}
 
             {/* <div className="flex">
             <div className="mr-4">

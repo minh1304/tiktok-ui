@@ -7,19 +7,14 @@ import { faCheckCircle } from '@fortawesome/free-solid-svg-icons';
 import styles from './AccountPreview.module.scss';
 import Button from '~/components/Button';
 import { AuthUserContext } from '~/App';
-import * as userService from '~/services/userService'
+import * as userService from '~/services/userService';
 const cx = classNames.bind(styles);
 
-function AccountPreview({ data, followed, setFollowed }) {
-
-    const authUser = useContext(AuthUserContext)
+function AccountPreview({ data, followed, setFollowed, onOpenLogin }) {
+    const authUser = useContext(AuthUserContext);
     // const [following, setFollowing] = useState(data.user.is_followed);
     const handleFollow = (e) => {
-        e.preventDefault()
-        if (!authUser || !authUser.meta.token) {
-            alert('Please login!');
-            return;
-        }
+        e.preventDefault();
         if (followed) {
             userService
                 .unfollowAnUser({ userId: data.user.id, accessToken: authUser.meta.token })
@@ -44,19 +39,28 @@ function AccountPreview({ data, followed, setFollowed }) {
         <div className={cx('wrapper')}>
             <div className={cx('header')}>
                 <img className={cx('avatar')} src={data.user.avatar} alt="" />
-                {(!followed)  && (
+                {authUser && !followed && (
                     <Button onClick={handleFollow} outline className={cx('follow-btn')}>
                         Follow
                     </Button>
                 )}
-                {followed && (
+                {authUser && followed && (
                     <Button onClick={handleFollow} round className={cx('following-btn')}>
                         Following
                     </Button>
                 )}
-
-
-
+                {!authUser && (
+                    <Button
+                        onClick={(e) => {
+                            e.preventDefault();
+                            onOpenLogin();
+                        }}
+                        outline
+                        className={cx('follow-btn')}
+                    >
+                        Follow
+                    </Button>
+                )}
             </div>
             <div className={cx('body')}>
                 <p className={cx('nickname')}>

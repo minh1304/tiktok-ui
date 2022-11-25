@@ -11,13 +11,13 @@ import AccountPreview from './AccountPreview';
 import Image from '../Image';
 
 const cx = classNames.bind(styles);
-function AccountItem({ data, wider }) {
+function AccountItem({ data, wider, onOpenLogin }) {
     const renderPreview = (prop) => {
         if (!wider)
             return (
                 <div tabIndex="-1" {...prop}>
                     <PopperWrapper>
-                        <AccountPreview data={data} />
+                        <AccountPreview data={data} onOpenLogin={onOpenLogin}/>
                     </PopperWrapper>
                 </div>
             );

@@ -6,17 +6,29 @@ import Card from '~/layouts/components/Card';
 import styles from './Following.module.scss';
 import * as timelineService from '~/services/timelineService';
 import * as userService from '~/services/userService';
+import OpenLogin from '~/components/OpenLogin';
 import { AuthUserContext } from '~/App';
 
 const cx = classNames.bind(styles);
 const INIT_PAGE = 1;
 function Following() {
-    
     const [page, setPage] = useState(INIT_PAGE);
     const [videos, setVideos] = useState([]);
     const [suggestedUser, setSuggestedUser] = useState([]);
+    const [openLogin, setOpenLogin] = useState(false);
+    const [close, setClose] = useState(false);
+    const handleOpenLogin = () => {
+        setOpenLogin(true);
+        setClose(false);
+    };
+    const handleClose = () => {
+        setClose(true);
+        setOpenLogin(false);
+    };
     const authUser = useContext(AuthUserContext);
+
     const accessToken = authUser && authUser.meta.token;
+
     useEffect(() => {
         timelineService
             .getVideos({ type: 'for-you', page, accessToken: accessToken })
@@ -27,20 +39,21 @@ function Following() {
                 console.log(error);
             });
     }, [page, accessToken]);
-    useEffect(()=> {
+    useEffect(() => {
         userService
-        .getSuggested({ page: 1, perPage: 18 })
-        .then((data) => {
-            setSuggestedUser(data);
-        })
-        .catch((error) => console.log(error));
-    })
+            .getSuggested({ page: 1, perPage: 18 })
+            .then((data) => {
+                setSuggestedUser(data);
+            })
+            .catch((error) => console.log(error));
+    });
     const handleSeeMore = () => {
         setPage(page + 1);
     };
     // console.log(suggestedUser);
     return (
         <div className={cx('wrapper')}>
+            {openLogin && !close && <OpenLogin onClose={handleClose} />}
             <div className={cx('body')}>
                 {authUser && (
                     <>
@@ -54,9 +67,9 @@ function Following() {
                 )}
                 {!authUser && (
                     <>
-                        {suggestedUser.map(
-                            (account) => <Card key={account.id} data={account} />,
-                        )}
+                        {suggestedUser.map((account) => (
+                            <Card key={account.id} data={account} onOpenLogin={handleOpenLogin} />
+                        ))}
                     </>
                 )}
             </div>
