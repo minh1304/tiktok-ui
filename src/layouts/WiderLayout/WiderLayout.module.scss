@@ -6,8 +6,8 @@
 .container {
     position: absolute;
     left: 17px;
-    width: var(--default-layout-width);
-    max-width: 100%;
+    // width: var(--default-layout-width);
+    width: 100vw;
     display: flex;
     margin-top: var(--default-layout-header-height);
 
@@ -16,6 +16,5 @@
 .content {
     flex: 1 1;
     padding-left: 10px;
-    margin-left: 225px;
 }
 

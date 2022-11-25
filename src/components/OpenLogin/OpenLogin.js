@@ -1,9 +1,9 @@
 import classNames from 'classnames/bind';
 import styles from './OpenLogin.module.scss';
 import { useState, useContext, createContext, useEffect } from 'react';
-import Login from '~/components/AuthTest/partials/Login';
-import AuthModal from '~/components/AuthTest/Modal';
-import EmailAndPasswordLoginForm from '~/components/AuthTest/partials/EmailAndPasswordLoginForm';
+import Login from '~/components/Auth/partials/Login';
+import AuthModal from '~/components/Auth/Modal';
+import EmailAndPasswordLoginForm from '~/components/Auth/partials/EmailAndPasswordLoginForm';
 const cx = classNames.bind(styles);
 export const ModalBodyNameContext = createContext();
 
