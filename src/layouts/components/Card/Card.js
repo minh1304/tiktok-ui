@@ -19,8 +19,8 @@ function Card({ data, onOpenLogin }) {
     }
     return (
         <div className={cx('userCard')}>
-            <a href={`/@${data.nickname}`} className={cx('aUserCard')}>
-                <div className={cx('divContainer')} onMouseOver={handlePlayCard} onMouseOut={handleStopPlayCard}>
+            <a href={`/@${data.nickname}`} className={cx('aUserCard')} onMouseOver={handlePlayCard} onMouseOut={handleStopPlayCard}>
+                <div className={cx('divContainer')} >
                     {play &&
                         <video
                             autoPlay
