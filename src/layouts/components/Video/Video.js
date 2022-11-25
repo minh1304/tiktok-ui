@@ -2,7 +2,7 @@ import { Link } from 'react-router-dom';
 import classNames from 'classnames/bind';
 import styles from './Video.module.scss';
 import Tippy from '@tippyjs/react/headless';
-import { useContext, useState } from 'react';
+import { useContext, useEffect, useRef, useState } from 'react';
 
 import { Wrapper as PopperWrapper } from '~/components/Popper';
 import config from '~/config';
@@ -17,7 +17,6 @@ import * as userService from '~/services/userService';
 const cx = classNames.bind(styles);
 
 function Video({ video, isFollow, onOpenLogin }) {
-
     const renderPreview = (prop) => {
         return (
             <div tabIndex="-1" {...prop}>
@@ -63,6 +62,42 @@ function Video({ video, isFollow, onOpenLogin }) {
                 });
         }
     };
+    const [playing, setPlaying] = useState(true);
+    const videoRef = useRef(null);
+    useEffect(() => {
+        let options = {
+            rootMargin: '0px',
+            threshold: [0.5, 0.85],
+        };
+
+        let handlePlay = (entries, observer) => {
+            entries.forEach((entry) => {
+                if (entry.isIntersecting && playing) {
+                    videoRef.current.play();
+                    setPlaying(true);
+                } else {
+                    videoRef.current.pause();
+                }
+            });
+        };
+
+        let observer = new IntersectionObserver(handlePlay, options);
+
+        observer.observe(videoRef.current);
+    });
+
+    const handleVideoPress = () => {
+        if (playing) {
+            console.log('click dừng');
+            videoRef.current.pause();
+            setPlaying(false);
+        } else {
+            console.log('click chạy');
+            videoRef.current.play();
+            setPlaying(true);
+        }
+    };
+
     return (
         <div className={cx('container')}>
             <a href={`/@${video.user.nickname}`}>
@@ -108,19 +143,31 @@ function Video({ video, isFollow, onOpenLogin }) {
                 </div>
 
                 <div className={cx('container-video')}>
-                    <video
-                        // ref={videoRef}
-                        className={cx('video')}
-                        // style={{ width: '336px', height:'600px'}}
-                        controls
-                        loop
-                        muted
-                        playsInline
-                        poster={video.thumb_url}
-                    >
-                        <source src={video.file_url} type="video/mp4" />
-                        Your browser does not support HTML video.
-                    </video>
+                    <div className={cx('feed-video')}>
+                        <div className={cx('video-player-container')}>
+                            <div className={cx('div-container')}>
+                                <div className={cx('basic-player-wrapper')}>
+                                    <div className={cx('container-video')}>
+                                        <video
+                                            ref={videoRef}
+                                            onClick={handleVideoPress}
+                                            className={cx('video')}
+                                            controls
+                                            loop
+                                            muted
+                                            playsInline
+                                            poster={video.thumb_url}
+                                        >
+                                            <source src={video.file_url} type="video/mp4" />
+                                        </video>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div>video play</div>
+
+                        </div>
+                    </div>
                     <div className={cx('action')}>
                         <button className={cx('button')} onClick={handleLike}>
                             <div className={cx('icon')}>
