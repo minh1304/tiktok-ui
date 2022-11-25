@@ -11,15 +11,16 @@ import AccountPreview from './AccountPreview';
 import Image from '../Image';
 
 const cx = classNames.bind(styles);
-function AccountItem({ data, wider}) {
+function AccountItem({ data, wider }) {
     const renderPreview = (prop) => {
-        if(!wider) return (
-            <div tabIndex="-1" {...prop}>
-                <PopperWrapper>
-                    <AccountPreview  data={data} />
-                </PopperWrapper>
-            </div>
-        );
+        if (!wider)
+            return (
+                <div tabIndex="-1" {...prop}>
+                    <PopperWrapper>
+                        <AccountPreview data={data} />
+                    </PopperWrapper>
+                </div>
+            );
     };
     return (
         <Link to={`/@${data.nickname}`}>
@@ -41,6 +42,6 @@ function AccountItem({ data, wider}) {
     );
 }
 AccountItem.propTypes = {
-data: PropTypes.object.isRequired,
+    data: PropTypes.object.isRequired,
 };
 export default AccountItem;

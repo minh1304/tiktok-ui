@@ -2,7 +2,6 @@ import { Fragment, createContext } from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import { publicRoutes } from './routes/routes';
 import DefaultLayout from './layouts';
-
 export const AuthUserContext = createContext()
 function App() {
     const authUser = JSON.parse(localStorage.getItem('user'))

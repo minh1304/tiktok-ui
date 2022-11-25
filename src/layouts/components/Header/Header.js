@@ -25,10 +25,8 @@ import { InboxIcon, MessageIcon } from '~/components/Icons/Icons';
 import Image from '~/components/Image';
 import Search from '../Search';
 import config from '~/config';
-import AuthModal from '~/layouts/components/Auth/Modal';
-import Login from '~/layouts/components/Auth/partials/Login';
-import EmailAndPasswordLoginForm from '../Auth/partials/EmailAndPasswordLoginForm';
-import PhoneAndCodeLoginForm from '../Auth/partials/EmailAndPasswordLoginForm';
+
+// import PhoneAndCodeLoginForm from '../Auth/partials/EmailAndPasswordLoginForm';
 
 import { AuthUserContext } from '~/App'; 
  
@@ -64,7 +62,7 @@ const MENU_ITEMS = [
         title: 'Keyboard shortcuts',
     },
 ];
-function Header({ wider }) {
+function Header({ wider, onOpenLogin }) {
     const currentUser = useContext(AuthUserContext);
 
     //handle logic
@@ -83,10 +81,6 @@ function Header({ wider }) {
 
 
     };
-    const [showAuthModal, setShowAuthModal] = useState(false);
-    const [children, setChildren] = useState(<Login />);
-    const [navigateBack, setNavigateBack] = useState(null);
-    const [modalBodyName, setModalBodyName] = useState('login');
     const userMenu = [
         {
             icon: <FontAwesomeIcon icon={faUser} />,
@@ -116,31 +110,7 @@ function Header({ wider }) {
             separate: true,
         },
     ];
-    const handleModalBodyName = (value) => {
-        setModalBodyName(value ?? 'login');
-    };
-
-    const value = {
-        modalBodyName,
-        navigateBack,
-        handleModalBodyName,
-    };
-    useEffect(() => {
-        switch (modalBodyName) {
-            case 'login':
-                setChildren(<Login />);
-                setNavigateBack(null);
-                break;
-
-            case 'login-with-email':
-                setChildren(<EmailAndPasswordLoginForm />);
-                setNavigateBack('login');
-                break;
-            default:
-                setChildren(<Login />);
-                break;
-        }
-    }, [modalBodyName]);
+    
     return (
         <header className={cx('wrapper')}>
             <div className={wider ? cx('ahihi') : cx('inner')}>
@@ -173,27 +143,14 @@ function Header({ wider }) {
                             </Button>
                             <Button
                                 primary
-                                onClick={() => {
-                                    setShowAuthModal(true);
-                                }}
+                                onClick={onOpenLogin}
                             >
                                 Log in
                             </Button>
                         </>
                     )}
 
-                    <ModalBodyNameContext.Provider value={value}>
-                        {showAuthModal && (
-                            <AuthModal
-                                children={children}
-                                onClose={() => {
-                                    setShowAuthModal(false);
-                                    setModalBodyName('');
-                                    setNavigateBack(null);
-                                }}
-                            />
-                        )}
-                    </ModalBodyNameContext.Provider>
+                
 
                     <Menu items={currentUser ? userMenu : MENU_ITEMS} onChange={handleMenuChange}>
                         {currentUser ? (

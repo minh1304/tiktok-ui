@@ -11,6 +11,7 @@ import { AuthUserContext } from '~/App';
 const cx = classNames.bind(styles);
 const INIT_PAGE = 1;
 function Following() {
+    
     const [page, setPage] = useState(INIT_PAGE);
     const [videos, setVideos] = useState([]);
     const [suggestedUser, setSuggestedUser] = useState([]);
