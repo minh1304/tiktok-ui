@@ -75,7 +75,7 @@ function Login() {
                     </div>
                 </a>
             ) : (
-                <div>
+                <div key={key}>
                     <div className={cx('Box-container')}>
                         <div className={cx('Icon-container')}>{button.icon}</div>
                         {button.text}

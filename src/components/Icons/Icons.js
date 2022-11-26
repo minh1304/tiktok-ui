@@ -597,6 +597,7 @@ export const ReportIcon = ({ width = '1.6rem', height = '1.6rem', className }) =
 );
 export const BlockIcon = ({ width = '1.6rem', height = '1.6rem', className }) => (
     <svg
+        className={className}
         xmlns="http://www.w3.org/2000/svg"
         fill="none"
         viewBox="0 0 16 16"
@@ -614,3 +615,9 @@ export const BlockIcon = ({ width = '1.6rem', height = '1.6rem', className }) =>
         ></path>
     </svg>
 );
+
+// export const PlayIcon = ({ width = '2rem', height = '2rem', className }) => (
+//     <svg viewBox="0 0 48 48" xmlns="http://www.w3.org/2000/svg" width={width} height={height} className={className}  fill="#fff">
+//         <use xlink:href="#svg-play-fill"></use>
+//     </svg>
+// );

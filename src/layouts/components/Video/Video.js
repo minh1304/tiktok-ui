@@ -8,11 +8,22 @@ import { Wrapper as PopperWrapper } from '~/components/Popper';
 import config from '~/config';
 import Image from '~/components/Image';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faCheckCircle, faCommentDots, faHeart, faMusic, faShare } from '@fortawesome/free-solid-svg-icons';
+import {
+    faCheckCircle,
+    faCommentDots,
+    faHeart,
+    faMusic,
+    faPause,
+    faPlay,
+    faShare,
+    faVolumeHigh,
+    faVolumeXmark,
+} from '@fortawesome/free-solid-svg-icons';
 import Button from '~/components/Button';
 import AccountPreview from './AccountPreview';
 import { AuthUserContext } from '~/App';
 import * as userService from '~/services/userService';
+import useElementOnScreen from './useElementOnScreen/useElementOnScreen';
 
 const cx = classNames.bind(styles);
 
@@ -62,42 +73,56 @@ function Video({ video, isFollow, onOpenLogin }) {
                 });
         }
     };
-    const [playing, setPlaying] = useState(true);
+    const [playing, setPlaying] = useState(false);
+    const [mute, setMute] = useState(false);
     const videoRef = useRef(null);
-    useEffect(() => {
-        let options = {
-            rootMargin: '0px',
-            threshold: [0.5, 0.85],
-        };
-
-        let handlePlay = (entries, observer) => {
-            entries.forEach((entry) => {
-                if (entry.isIntersecting && playing) {
-                    videoRef.current.play();
-                    setPlaying(true);
-                } else {
-                    videoRef.current.pause();
-                }
-            });
-        };
-
-        let observer = new IntersectionObserver(handlePlay, options);
-
-        observer.observe(videoRef.current);
-    });
-
+    const options = {
+        root: null,
+        rootMargin: '0px',
+        threshold: [0.85, 0.85],
+    };
+    const isVisibile = useElementOnScreen(options, videoRef);
     const handleVideoPress = () => {
         if (playing) {
-            console.log('click dừng');
             videoRef.current.pause();
             setPlaying(false);
         } else {
-            console.log('click chạy');
+            videoRef.current.play();
+            setPlaying(true);
+        }
+    }
+    const handlePlayVideo = () => {
+        if (playing) {
+            videoRef.current.pause();
+            setPlaying(false);
+        } else {
             videoRef.current.play();
             setPlaying(true);
         }
     };
+    const handleVolume = () => {
+        if (mute === true) {
+            setMute(false);
+        } else {
+            setMute(true);
+        }
 
+    };
+    useEffect(() => {
+        if (isVisibile) {
+
+            if (!playing) {
+                videoRef.current.play();
+                setPlaying(true);
+            }
+        } else {
+            if (playing) {
+                videoRef.current.pause();
+                setPlaying(false);
+            }
+
+        }
+    }, [isVisibile]);
     return (
         <div className={cx('container')}>
             <a href={`/@${video.user.nickname}`}>
@@ -105,7 +130,7 @@ function Video({ video, isFollow, onOpenLogin }) {
                     <Image className={cx('avatar')} src={video.user.avatar} alt={video.user.nickname} />
                 </Tippy>
             </a>
-            <div>
+            <div style={{ maxWidth: '520px' }}>
                 <a href={`/@${video.user.nickname}`} className={cx('item-info')}>
                     <Tippy
                         interactive
@@ -152,20 +177,49 @@ function Video({ video, isFollow, onOpenLogin }) {
                                             ref={videoRef}
                                             onClick={handleVideoPress}
                                             className={cx('video')}
-                                            controls
                                             loop
-                                            muted
-                                            playsInline
+                                            preload="true"
+                                            muted={mute}
+                                            // playsInline
                                             poster={video.thumb_url}
-                                        >
-                                            <source src={video.file_url} type="video/mp4" />
-                                        </video>
+                                            src={video.file_url}
+                                            type="video/mp4"
+                                        ></video>
                                     </div>
                                 </div>
                             </div>
-
-                            <div>video play</div>
-
+                            <div className={cx('action-video')}>
+                                <div className={cx('video-play')}>
+                                    {!playing ? (
+                                        <FontAwesomeIcon
+                                            onClick={handlePlayVideo}
+                                            className={cx('btn-play')}
+                                            icon={faPlay}
+                                        />
+                                    ) : (
+                                        <FontAwesomeIcon
+                                            onClick={handlePlayVideo}
+                                            className={cx('btn-play')}
+                                            icon={faPause}
+                                        />
+                                    )}
+                                </div>
+                                <div className={cx('video-volume')}>
+                                    {mute ? (
+                                        <FontAwesomeIcon
+                                            onClick={handleVolume}
+                                            className={cx('btn-volume')}
+                                            icon={faVolumeXmark}
+                                        />
+                                    ) : (
+                                        <FontAwesomeIcon
+                                            onClick={handleVolume}
+                                            className={cx('btn-volume')}
+                                            icon={faVolumeHigh}
+                                        />
+                                    )}
+                                </div>
+                            </div>
                         </div>
                     </div>
                     <div className={cx('action')}>

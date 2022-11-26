@@ -3,6 +3,7 @@
     // width: 692px;
     border-bottom: 1px solid #e3e3e4;
     padding-top: 20px;
+    min-height: 700px;
 }
 .avatar {
     width: 56px;
@@ -33,19 +34,20 @@
     font-weight: 400;
     line-height: 28px;
 }
-.description{
+.description {
     margin-left: 12px;
     width: 510px;
+    min-height: 30px;
     max-height: 68px;
 }
-.link-music{
+.link-music {
     height: 24px;
     margin-left: 12px;
     width: 510px;
     height: 22px;
     margin-bottom: 12px;
 }
-.music{
+.music {
     height: 12px;
     line-height: 22px;
     margin-right: 5px;
@@ -58,21 +60,47 @@
     // height: 514px;
 }
 .video {
-    width: 336px;
-    height: 600px;
+    width: 290px;
+    height: 517px;
     object-fit: cover;
     border-radius: 8px;
     overflow: hidden;
     cursor: pointer;
     margin-bottom: 10px;
+    position: relative;
 }
-.follow-btn{
+.action-video {
+    display: flex;
+    margin-top: -65px;
+    position: absolute;
+}
+.video-play {
+    padding-left: 30px;
+    cursor: pointer;
+}
+
+.btn-play {
+    width: 20px;
+    height: 20px;
+    color: white;
+}
+.video-volume {
+    padding-left: 210px;
+    cursor: pointer;
+}
+.btn-volume {
+    width: 25px;
+    height: 25px;
+    color: white;
+}
+
+.follow-btn {
     width: 88px;
     height: 28px;
     margin-left: 20px;
     margin-top: 7px;
 }
-.following-btn{
+.following-btn {
     width: 88px;
     height: 28px;
     margin-left: 20px;
@@ -80,32 +108,29 @@
     color: black;
 }
 
-.action{
+.action {
     width: 48px;
-    height: 237px;
-    padding-top: 363px;
+    padding-top: 280px;
     padding-left: 20px;
 }
 .button {
     width: 48px;
     height: 79px;
-    background:var(---white);
+    background: var(---white);
     cursor: pointer;
-    
 }
-.icon{
-    background: rgba(22,24,35,0.06);
+.icon {
+    background: rgba(22, 24, 35, 0.06);
 
     border-radius: 50%;
     width: 48px;
     height: 48px;
-    
+
     margin-top: 8px;
     margin-bottom: 6px;
-
 }
 
-.span-icon-wrapper{
+.span-icon-wrapper {
     width: 24px;
     height: 48px;
     transition: all ease-in-out 300ms;
@@ -114,13 +139,12 @@
     width: 24px;
     height: 48px;
     color: #fe2c55;
-
 }
-.count{
-    color: rgba(22,24,35,0.75);
+.count {
+    color: rgba(22, 24, 35, 0.75);
     font-size: 1.2rem;
 }
 .count_1 {
-    color: rgba(22,24,35,0.75);
+    color: rgba(22, 24, 35, 0.75);
     font-size: 1.2rem;
 }
