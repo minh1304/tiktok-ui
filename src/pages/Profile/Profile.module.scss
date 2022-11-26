@@ -1,8 +1,10 @@
+
 .content {
     padding: 32px 24px;
     flex: 1 1 auto;
     display: flex;
     flex-direction: column;
+
 }
 .header {
     position: relative;
@@ -105,6 +107,10 @@
 .btn-follow {
     width: 208px;
     height: 36px;
+}
+.btn-editProfile {
+    height: 36px;
+    width: 140px;
 }
 .count-info {
     display: -webkit-box;

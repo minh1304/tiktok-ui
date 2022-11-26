@@ -4,9 +4,6 @@ import Card from './Card';
 import styles from './LayoutMain.module.scss';
 const cx = classNames.bind(styles);
 function LayoutMain({ listVideos }) {
-    console.log(listVideos);
-
-
     return (
         <div className={cx('wrapper')}>
             <div className={cx('video-feed-tab')}>

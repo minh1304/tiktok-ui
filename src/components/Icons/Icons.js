@@ -226,9 +226,9 @@ export const LiveActiveIcon = ({ width = '3.2rem', height = '3.2rem', className 
     </svg>
 );
 
-export const CloseButtonIcon = ({ width = '32', height = '32', classes }) => (
+export const CloseButtonIcon = ({ width = '32', height = '32', className }) => (
     <svg
-        className={classes}
+        className={className}
         width={width}
         height={height}
         viewBox="0 0 48 48"
@@ -243,9 +243,9 @@ export const CloseButtonIcon = ({ width = '32', height = '32', classes }) => (
     </svg>
 );
 
-export const QRCodeIcon = ({ width = '32', height = '32', classes }) => (
+export const QRCodeIcon = ({ width = '32', height = '32', className }) => (
     <svg
-        className={classes}
+        className={className}
         width={width}
         height={height}
         viewBox="0 0 48 48"
@@ -260,9 +260,9 @@ export const QRCodeIcon = ({ width = '32', height = '32', classes }) => (
     </svg>
 );
 
-export const FacebookIcon = ({ width = '32', height = '32', classes }) => (
+export const FacebookIcon = ({ width = '32', height = '32', className }) => (
     <svg
-        className={classes}
+        className={className}
         width={width}
         height={height}
         viewBox="0 0 48 48"
@@ -280,9 +280,9 @@ export const FacebookIcon = ({ width = '32', height = '32', classes }) => (
     </svg>
 );
 
-export const GoogleIcon = ({ width = '32', height = '32', classes }) => (
+export const GoogleIcon = ({ width = '32', height = '32', className }) => (
     <svg
-        className={classes}
+        className={className}
         width={width}
         height={height}
         viewBox="0 0 48 48"
@@ -316,9 +316,9 @@ export const GoogleIcon = ({ width = '32', height = '32', classes }) => (
     </svg>
 );
 
-export const LineIcon = ({ width = '32', height = '32', classes }) => (
+export const LineIcon = ({ width = '32', height = '32', className }) => (
     <svg
-        className={classes}
+        className={className}
         width={width}
         height={height}
         viewBox="0 0 48 48"
@@ -354,9 +354,9 @@ export const LineIcon = ({ width = '32', height = '32', classes }) => (
     </svg>
 );
 
-export const TwitterIcon = ({ width = '32', height = '32', classes }) => (
+export const TwitterIcon = ({ width = '32', height = '32', className }) => (
     <svg
-        className={classes}
+        className={className}
         width={width}
         height={height}
         viewBox="0 0 48 48"
@@ -372,11 +372,11 @@ export const TwitterIcon = ({ width = '32', height = '32', classes }) => (
     </svg>
 );
 
-export const KakaoTalkIcon = ({ width = '32', height = '32', classes }) => (
+export const KakaoTalkIcon = ({ width = '32', height = '32', className }) => (
     <svg
         width={width}
         height={height}
-        className={classes}
+        className={className}
         viewBox="0 0 48 48"
         fill="none"
         xmlns="http://www.w3.org/2000/svg"
@@ -398,7 +398,7 @@ export const KakaoTalkIcon = ({ width = '32', height = '32', classes }) => (
     </svg>
 );
 
-export const AppleIcon = ({ width = '32', height = '32', classes }) => (
+export const AppleIcon = ({ width = '32', height = '32', className }) => (
     <svg width={width} xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 48 48">
         <path
             fillRule="evenodd"
@@ -408,7 +408,7 @@ export const AppleIcon = ({ width = '32', height = '32', classes }) => (
     </svg>
 );
 
-export const InstagramIcon = ({ width = '32', height = '32', classes }) => (
+export const InstagramIcon = ({ width = '32', height = '32', className }) => (
     <svg height={height} viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
         <path
             fillRule="evenodd"
@@ -498,8 +498,8 @@ export const HrefIcon = ({ width = '2.6rem', height = '2.6rem', className }) => 
         xmlns="http://www.w3.org/2000/svg"
     >
         <path
-            fill-rule="evenodd"
-            clip-rule="evenodd"
+            fillRule="evenodd"
+            clipRule="evenodd"
             d="M12 24C18.6274 24 24 18.6274 24 12C24 5.37258 18.6274 0 12 0C5.37258 0 0 5.37258 0 12C0 18.6274 5.37258 24 12 24Z"
             fill="#161823"
             fillOpacity="0.75"
@@ -545,8 +545,8 @@ export const CopyIcon = ({ width = '2.6rem', height = '2.6rem', className }) => 
         xmlns="http://www.w3.org/2000/svg"
     >
         <path
-            fill-rule="evenodd"
-            clip-rule="evenodd"
+            fillRule="evenodd"
+            clipRule="evenodd"
             d="M12 24C18.6274 24 24 18.6274 24 12C24 5.37258 18.6274 0 12 0C5.37258 0 0 5.37258 0 12C0 18.6274 5.37258 24 12 24Z"
             fill="#FE2C55"
         ></path>

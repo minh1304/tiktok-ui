@@ -43,7 +43,6 @@ function OpenLogin({onClose}) {
                         children={children}
                         onClose={() => {
                             onClose();
-                            console.log("ahihi");
                             setModalBodyName('');
                             setNavigateBack(null);
                         }}

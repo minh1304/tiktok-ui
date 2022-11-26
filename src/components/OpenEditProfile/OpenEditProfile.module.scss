@@ -1,0 +1,228 @@
+.Modal-container {
+    inset: 0px;
+    overflow: auto;
+    outline: 0px;
+    transition: all 500ms cubic-bezier(0.075, 0.82, 0.165, 1) 0s;
+    display: flex;
+    opacity: 1;
+    outline: 2px solid transparent;
+    outline-offset: 2px;
+    z-index: 50000;
+    position: fixed;
+}
+.mask {
+    background: rgba(0, 0, 0, 0.5);
+    position: fixed;
+    inset: 0px;
+}
+.content-container {
+    border-radius: 8px;
+    transition: all 300ms cubic-bezier(0.075, 0.82, 0.165, 1) 0s;
+    transform: none;
+    margin: auto;
+    position: relative;
+    max-height: 693px;
+    height: 100%;
+    overflow: hidden;
+    background-color: rgb(255, 255, 255);
+    z-index: 1001;
+    opacity: 1;
+}
+.header {
+    padding-top: 3rem;
+    flex-direction: column;
+    display: flex;
+    position: relative;
+    font-family: ProximaNova, Arial, Tahoma, PingFangSC, sans-serif;
+    font-weight: 600;
+    font-size: 24px;
+    padding: 24px 24px 12px;
+    line-height: 36px;
+    color: rgb(22, 24, 35);
+    border-bottom: 0.5px solid rgba(22, 24, 35, 0.2);
+    display: flex;
+    -webkit-box-pack: justify;
+    justify-content: space-between;
+}
+
+.Close-wrapper {
+    position: absolute;
+    top: 24px;
+    border-radius: 50%;
+    cursor: pointer;
+    display: flex;
+    -webkit-box-align: center;
+    align-items: center;
+    -webkit-box-pack: center;
+    justify-content: center;
+    z-index: 1;
+    right: 24px;
+    width: 24px;
+    height: 24px;
+    background: rgba(22, 24, 35, 0.03);
+}
+
+.modal-editProfile {
+    width: 700px;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    overflow-y: auto;
+}
+.profile-photo {
+    padding: 16px 0px;
+    display: flex;
+    border-bottom: 0.5px solid rgba(22, 24, 35, 0.2);
+}
+.text-photo {
+    font-family: ProximaNova, Arial, Tahoma, PingFangSC, sans-serif;
+    font-weight: 600;
+    line-height: 24px;
+    font-size: 16px;
+    width: 120px;
+    margin-left: 24px;
+}
+.avatar-content {
+    position: relative;
+    height: 96px;
+}
+
+.styledAvatar {
+    width: 96px;
+    height: 96px;
+    position: relative;
+    display: flex;
+    -webkit-box-align: center;
+    align-items: center;
+    -webkit-box-pack: center;
+    justify-content: center;
+    margin-left: 148px;
+}
+
+.span-avatar-container {
+    width: 96px;
+    height: 96px;
+    display: inline-block;
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    font-feature-settings: 'tnum';
+    position: relative;
+    overflow: hidden;
+    color: #fff;
+    white-space: nowrap;
+    text-align: center;
+    vertical-align: middle;
+    line-height: 32px;
+    border-radius: 50%;
+    background-color: rgba(136, 136, 136, 0.5);
+    border-color: rgba(22, 24, 35, 0.12);
+    border-width: 0.5px;
+    cursor: pointer;
+}
+.image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+.icon-edit {
+    top: 63px;
+    left: -35px;
+    width: 32px;
+    height: 32px;
+    border-radius: 16px;
+    background: rgb(255, 255, 255);
+    border: 1px solid rgb(208, 208, 211);
+    box-sizing: border-box;
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+    position: relative;
+}
+.icon {
+    cursor: pointer;
+    position: absolute;
+    padding-left: 8px;
+}
+.input {
+    cursor: pointer;
+    position: absolute;
+    width: 32px;
+    height: 32px;
+    padding-left: 37px;
+    opacity: 0;
+}
+
+.div-content-container {
+    padding: 16px 0px;
+    display: flex;
+    border-bottom: 0.5px solid rgba(22, 24, 35, 0.12);
+    height: 97px;
+}
+
+.div-content-container-bio {
+    padding: 16px 0px;
+    display: flex;
+    border-bottom: 0.5px solid rgba(22, 24, 35, 0.12);
+    height: 157px;
+}
+
+.input-text {
+    width: 360px;
+    height: 38px;
+    border-radius: 4px;
+    background: rgba(22, 24, 35, 0.06);
+    caret-color: rgb(254, 44, 85);
+    font-size: 16px;
+    color: rgb(22, 24, 35);
+    line-height: 24px;
+    outline: none;
+    border: none;
+    padding: 7px 12px;
+    box-sizing: border-box;
+}
+.input-text-bio {
+    overflow-y: auto;
+    width: 360px;
+    height: 60px;
+    border-radius: 4px;
+    background: rgba(22, 24, 35, 0.06);
+    caret-color: rgb(254, 44, 85);
+    font-size: 16px;
+    color: rgb(22, 24, 35);
+    line-height: 24px;
+    outline: none;
+    border: none;
+    padding: 7px 12px;
+    box-sizing: border-box;
+}
+
+.text-decription {
+    font-size: 12px;
+    color: rgba(22, 24, 35, 0.75);
+    line-height: 18px;
+    max-width: 460px;
+    overflow: hidden;
+    margin-top: 8px;
+    width: 360px;
+}
+
+.footer {
+    height: 86px;
+    display: flex;
+    padding: 0px 24px;
+    -webkit-box-pack: end;
+    justify-content: flex-end;
+    // border-top: 0.5px solid rgba(22, 24, 35, 0.2);
+    -webkit-box-align: center;
+    align-items: center;
+    position: absolute;
+    width: 100%;
+    bottom: 0px;
+}
+.btn-save{
+    color: #16182357;
+    background-color: rgba(22, 24, 35, 0.06);
+    pointer-events: none;;
+
+}

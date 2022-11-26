@@ -27,6 +27,8 @@ import Share from './Share';
 import More from './More';
 import LayoutMain from '~/layouts/components/LayoutsMain';
 import OpenLogin from '~/components/OpenLogin';
+import OpenEditProfile from '~/components/OpenEditProfile';
+import { faPenToSquare } from '@fortawesome/free-regular-svg-icons';
 
 const cx = classNames.bind(styles);
 const MENU_ITEMS = [
@@ -127,6 +129,7 @@ function Profile() {
         );
     };
     const [openLogin, setOpenLogin] = useState(false);
+    const [openProfile, setOpenProfile] = useState(false)
     const [close, setClose] = useState(false);
     const handleOpenLogin = () => {
         setOpenLogin(true);
@@ -136,10 +139,14 @@ function Profile() {
         setClose(true);
         setOpenLogin(false);
     };
-
+    const handleEditProfile = () => {
+        setOpenProfile(true)
+        setClose(false);
+    }
     return (
         <div className={cx('content')}>
             {openLogin && !close && <OpenLogin onClose={handleClose} />}
+            {openProfile && !close && <OpenEditProfile data={user} onClose={handleClose}/>}
             <div className={cx('header')}>
                 <div className={cx('info')}>
                     <div className={cx('user-avatar')}>
@@ -154,16 +161,23 @@ function Profile() {
                             {user.first_name} {user.last_name}
                         </h1>
                         <div className={cx('followContainer')}>
-                            {authUser && !followed && (
+                            {authUser && !followed && authUser.data.nickname !== nickname && (
                                 <Button onClick={handleFollow} primary className={cx('btn-follow')}>
                                     Follow
                                 </Button>
                             )}
+
+                            {(authUser && authUser.data.nickname) === nickname && (
+                                <Button onClick={handleEditProfile} round  className={cx('btn-editProfile')}> <FontAwesomeIcon style={{fontSize: '18px'}} icon={faPenToSquare}/> Edit profile</Button>
+                            )}
+
+
                             {!authUser && (
                                 <Button onClick={handleOpenLogin} primary className={cx('btn-follow')}>
                                     Follow
                                 </Button>
                             )}
+
                             <div className={cx('messages-container')}>
                                 {followed && (
                                     <Button onClick={handleOpenMess} outline className={cx('btn-messages')}>
