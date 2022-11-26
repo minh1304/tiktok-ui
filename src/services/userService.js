@@ -55,6 +55,18 @@ export const followAnUser = async ({ userId, accessToken }) => {
       console.log(error)
     }
   }
+  
+  export const updateProfile = async ({ userId, accessToken }) => {
+    try {
+      return await httpRequest.post(`users/${userId}/unfollow`, [], {
+        headers: {
+          Authorization: `Bearer ${accessToken}`,
+        },
+      })
+    } catch (error) {
+      console.log(error)
+    }
+  }
 
   export const getUserProfile = async ({ nickname, accessToken }) => {
     try {

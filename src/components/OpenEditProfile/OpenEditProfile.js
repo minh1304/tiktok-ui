@@ -1,20 +1,21 @@
 import { faPencil } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import classNames from 'classnames/bind';
-import { useState } from 'react';
+import { useContext, useState } from 'react';
 import Button from '../Button';
 import { CloseButtonIcon } from '../Icons';
 import Image from '../Image';
 import styles from './OpenEditProfile.module.scss';
+import { AuthUserContext } from '~/App';
 
 const cx = classNames.bind(styles);
 function OpenEditProfile({ onClose, data }) {
     // const [name, setName] = useState('');
     const [selectedImage, setSelectedImage] = useState([]);
-    selectedImage.map((img) => console.log(img));
     const [is_image, setIs_Image] = useState(false);
     const onSelectFiles = (event) => {
         const selectedFiles = event.target.files[0];
+        formdata.append('avatar', selectedFiles);
         const selectedFileArray = Array(selectedFiles);
         const imageArray = selectedFileArray.map((file) => {
             return URL.createObjectURL(file);
@@ -28,6 +29,34 @@ function OpenEditProfile({ onClose, data }) {
     const [lastname, setLasttname] = useState('');
     const [bio, setBio] = useState('');
     const [entered, setEntered] = useState(false);
+
+    const authUser = useContext(AuthUserContext);
+    const accessToken = authUser && authUser.meta.token;
+
+
+    var myHeaders = new Headers();
+    var formdata = new FormData();
+    formdata.append('first_name', firstname);
+    formdata.append('last_name', lastname);
+    formdata.append('bio', bio);
+
+  
+    const handleAPI = () => {
+        myHeaders.append('Authorization', `Bearer ${accessToken}`);
+        var requestOptions = {
+            method: 'POST',
+            headers: myHeaders,
+            body: formdata,
+            redirect: 'follow',
+        };
+        fetch('https://tiktok.fullstack.edu.vn/api/auth/me?_method=PATCH', requestOptions)
+            .then((response) => response.text())
+            .then((result) => console.log(result))
+            .catch((error) => console.log('error', error));
+
+    };
+
+
     return (
         <div className={cx('Modal-container')}>
             <div className={cx('mask')}></div>
@@ -131,11 +160,7 @@ function OpenEditProfile({ onClose, data }) {
                     <Button onClick={onClose} className={cx('btn-cancel')} round>
                         Cancel
                     </Button>
-                    <Button
-                        onClick={() => console.log('ahihi')}
-                        className={!entered ? cx('btn-save') : cx('btn-save2')}
-                        primary
-                    >
+                    <Button onClick={handleAPI} className={!entered ? cx('btn-save') : cx('btn-save2')} primary>
                         Save
                     </Button>
                 </div>
