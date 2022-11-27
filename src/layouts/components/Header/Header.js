@@ -122,7 +122,7 @@ function Header({ wider, onOpenLogin }) {
                 <div className={cx('actions')}>
                     {currentUser ? (
                         <>
-                            <Button outline className={cx('upload')} leftIcon={<FontAwesomeIcon icon={faPlus} />}>
+                            <Button onClick={()=> alert('Wait API')} outline className={cx('upload')} leftIcon={<FontAwesomeIcon icon={faPlus} />}>
                                 Upload
                             </Button>
                             <Tippy delay={[0, 200]} content="Messages" placement="bottom">
@@ -138,7 +138,7 @@ function Header({ wider, onOpenLogin }) {
                         </>
                     ) : (
                         <>
-                            <Button outline className={cx('upload')} leftIcon={<FontAwesomeIcon icon={faPlus} />}>
+                            <Button onClick={onOpenLogin} outline className={cx('upload')} leftIcon={<FontAwesomeIcon icon={faPlus} />}>
                                 Upload
                             </Button>
                             <Button
