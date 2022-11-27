@@ -129,24 +129,25 @@ function Profile() {
         );
     };
     const [openLogin, setOpenLogin] = useState(false);
-    const [openProfile, setOpenProfile] = useState(false)
+    const [openProfile, setOpenProfile] = useState(false);
     const [close, setClose] = useState(false);
     const handleOpenLogin = () => {
         setOpenLogin(true);
         setClose(false);
     };
     const handleClose = () => {
+        window.location.reload();
         setClose(true);
         setOpenLogin(false);
     };
     const handleEditProfile = () => {
-        setOpenProfile(true)
+        setOpenProfile(true);
         setClose(false);
-    }
+    };
     return (
         <div className={cx('content')}>
             {openLogin && !close && <OpenLogin onClose={handleClose} />}
-            {openProfile && !close && <OpenEditProfile data={user} onClose={handleClose}/>}
+            {openProfile && !close && <OpenEditProfile data={user} onClose={handleClose} />}
             <div className={cx('header')}>
                 <div className={cx('info')}>
                     <div className={cx('user-avatar')}>
@@ -168,9 +169,11 @@ function Profile() {
                             )}
 
                             {(authUser && authUser.data.nickname) === nickname && (
-                                <Button onClick={handleEditProfile} round  className={cx('btn-editProfile')}> <FontAwesomeIcon style={{fontSize: '18px'}} icon={faPenToSquare}/> Edit profile</Button>
+                                <Button onClick={handleEditProfile} round className={cx('btn-editProfile')}>
+                                    {' '}
+                                    <FontAwesomeIcon style={{ fontSize: '18px' }} icon={faPenToSquare} /> Edit profile
+                                </Button>
                             )}
-
 
                             {!authUser && (
                                 <Button onClick={handleOpenLogin} primary className={cx('btn-follow')}>

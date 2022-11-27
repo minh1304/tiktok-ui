@@ -6,25 +6,16 @@ import Button from '../Button';
 import { CloseButtonIcon } from '../Icons';
 import Image from '../Image';
 import styles from './OpenEditProfile.module.scss';
+import * as userService from '~/services/userService';
 import { AuthUserContext } from '~/App';
+import axios from 'axios';
 
 const cx = classNames.bind(styles);
 function OpenEditProfile({ onClose, data }) {
     // const [name, setName] = useState('');
     const [selectedImage, setSelectedImage] = useState([]);
     const [is_image, setIs_Image] = useState(false);
-    const onSelectFiles = (event) => {
-        const selectedFiles = event.target.files[0];
-        formdata.append('avatar', selectedFiles);
-        const selectedFileArray = Array(selectedFiles);
-        const imageArray = selectedFileArray.map((file) => {
-            return URL.createObjectURL(file);
-        });
-        if (setSelectedImage !== null) {
-            setIs_Image(true);
-            setSelectedImage(imageArray);
-        }
-    };
+
     const [firstname, setFirstname] = useState('');
     const [lastname, setLasttname] = useState('');
     const [bio, setBio] = useState('');
@@ -33,29 +24,45 @@ function OpenEditProfile({ onClose, data }) {
     const authUser = useContext(AuthUserContext);
     const accessToken = authUser && authUser.meta.token;
 
-
-    var myHeaders = new Headers();
     var formdata = new FormData();
     formdata.append('first_name', firstname);
     formdata.append('last_name', lastname);
     formdata.append('bio', bio);
 
-  
-    const handleAPI = () => {
-        myHeaders.append('Authorization', `Bearer ${accessToken}`);
-        var requestOptions = {
-            method: 'POST',
-            headers: myHeaders,
-            body: formdata,
-            redirect: 'follow',
-        };
-        fetch('https://tiktok.fullstack.edu.vn/api/auth/me?_method=PATCH', requestOptions)
-            .then((response) => response.text())
-            .then((result) => console.log(result))
-            .catch((error) => console.log('error', error));
-
+    const onSelectFiles = (event) => {
+        const selectedFiles = event.target.files[0];
+        formdata.append('avatar', selectedFiles);
+        const selectedFileArray = Array(selectedFiles);
+        const imageArray = selectedFileArray.map((file) => {
+            return URL.createObjectURL(file);
+        });
+        if (setSelectedImage !== null) {
+            setEntered(true)
+            setIs_Image(true);
+            setSelectedImage(imageArray);
+        }
     };
+    const handleAPI = () => {
+        //View Form
+        // for (var pair of formdata.entries()) {
+        //     console.log(pair[0] + ', ' + pair[1]);
+        // }
+        userService
 
+            .updateProfile({ accessToken: accessToken, form_data: formdata})
+            .then((res) => {
+                    console.log("Đúng rồi ");
+                    onClose();
+
+
+                    
+                  //handle success here
+
+            })
+            .catch((err) => {
+                console.log(err);
+            });
+    };
 
     return (
         <div className={cx('Modal-container')}>

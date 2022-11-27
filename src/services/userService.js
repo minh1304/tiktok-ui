@@ -1,13 +1,13 @@
 import * as httpRequest from '~/untils/httpRequest';
-export const getSuggested = async ({page , perPage, accessToken }) => {
+export const getSuggested = async ({ page, perPage, accessToken }) => {
     try {
         const res = await httpRequest.get('users/suggested', {
             headers: {
-              Authorization: `Bearer ${accessToken}`,
+                Authorization: `Bearer ${accessToken}`,
             },
             params: {
                 page,
-                per_page:perPage
+                per_page: perPage,
             },
         });
         return res.data;
@@ -15,11 +15,11 @@ export const getSuggested = async ({page , perPage, accessToken }) => {
         console.log(error);
     }
 };
-export const getFollowed = async ({page, accessToken}) => {
+export const getFollowed = async ({ page, accessToken }) => {
     try {
         const res = await httpRequest.get('me/followings', {
             headers: {
-              Authorization: `Bearer ${accessToken}`,
+                Authorization: `Bearer ${accessToken}`,
             },
             params: {
                 page,
@@ -31,52 +31,51 @@ export const getFollowed = async ({page, accessToken}) => {
     }
 };
 
-
 export const followAnUser = async ({ userId, accessToken }) => {
     try {
-      return await httpRequest.post(`users/${userId}/follow`, [], {
-        headers: {
-          Authorization: `Bearer ${accessToken}`,
-        },
-      });
+        return await httpRequest.post(`users/${userId}/follow`, [], {
+            headers: {
+                Authorization: `Bearer ${accessToken}`,
+            },
+        });
     } catch (error) {
-      console.log(error)
+        console.log(error);
     }
-  }
-  
-  export const unfollowAnUser = async ({ userId, accessToken }) => {
-    try {
-      return await httpRequest.post(`users/${userId}/unfollow`, [], {
-        headers: {
-          Authorization: `Bearer ${accessToken}`,
-        },
-      })
-    } catch (error) {
-      console.log(error)
-    }
-  }
-  
-  export const updateProfile = async ({ userId, accessToken }) => {
-    try {
-      return await httpRequest.post(`users/${userId}/unfollow`, [], {
-        headers: {
-          Authorization: `Bearer ${accessToken}`,
-        },
-      })
-    } catch (error) {
-      console.log(error)
-    }
-  }
+};
 
-  export const getUserProfile = async ({ nickname, accessToken }) => {
+export const unfollowAnUser = async ({ userId, accessToken }) => {
     try {
-      const res = await httpRequest.get(`users/@${nickname}`, {
-        headers: {
-          Authorization: `Bearer ${accessToken}`,
-        },
-      })
-      return res.data
+        return await httpRequest.post(`users/${userId}/unfollow`, [], {
+            headers: {
+                Authorization: `Bearer ${accessToken}`,
+            },
+        });
     } catch (error) {
-      console.log(error)
+        console.log(error);
     }
-  }
+};
+export const updateProfile = async ({ accessToken, form_data }) => {
+    try {
+        return await httpRequest.post('auth/me?_method=PATCH', form_data , {
+            headers: {
+                Authorization: `Bearer ${accessToken}`,
+                'Content-Type': 'multipart/form-data',
+            },
+        });
+    } catch (error) {
+        console.log(error);
+    }
+};
+
+export const getUserProfile = async ({ nickname, accessToken }) => {
+    try {
+        const res = await httpRequest.get(`users/@${nickname}`, {
+            headers: {
+                Authorization: `Bearer ${accessToken}`,
+            },
+        });
+        return res.data;
+    } catch (error) {
+        console.log(error);
+    }
+};
