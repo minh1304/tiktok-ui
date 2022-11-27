@@ -8,7 +8,7 @@ import Image from '../Image';
 import styles from './OpenEditProfile.module.scss';
 import * as userService from '~/services/userService';
 import { AuthUserContext } from '~/App';
-import axios from 'axios';
+
 
 const cx = classNames.bind(styles);
 function OpenEditProfile({ onClose, data }) {
@@ -51,13 +51,7 @@ function OpenEditProfile({ onClose, data }) {
 
             .updateProfile({ accessToken: accessToken, form_data: formdata})
             .then((res) => {
-                    console.log("Đúng rồi ");
                     onClose();
-
-
-                    
-                  //handle success here
-
             })
             .catch((err) => {
                 console.log(err);

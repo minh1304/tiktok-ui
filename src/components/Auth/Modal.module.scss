@@ -9,17 +9,14 @@
     outline-offset: 2px;
     z-index: 50000;
     position: fixed;
-
-
-
 }
-.Modal-mask{
+.Modal-mask {
     background: rgba(0, 0, 0, 0.5);
     position: fixed;
     inset: 0px;
 }
 
-.Modal-content-container{
+.Modal-content-container {
     border-radius: 8px;
     transition: all 300ms cubic-bezier(0.075, 0.82, 0.165, 1) 0s;
     transform: none;
@@ -33,7 +30,7 @@
     opacity: 1;
 }
 
-.login-modal{
+.login-modal {
     width: 483px;
     height: 100%;
     padding: 48px 0px 0px;
@@ -42,13 +39,13 @@
     overflow-y: auto;
     padding-top: 34px;
 }
-.Modal-header{
+.Modal-header {
     padding-top: 3rem;
     flex-direction: column;
     display: flex;
     position: relative;
 }
-.Back-btn{
+.Back-btn {
     left: 16px;
     position: absolute;
     top: 16px;
@@ -56,7 +53,7 @@
     transform: unset;
     font-size: 20px;
 }
-.Close-wrapper{
+.Close-wrapper {
     position: absolute;
     top: 24px;
     border-radius: 50%;
@@ -72,15 +69,15 @@
     height: 24px;
     background: rgba(22, 24, 35, 0.03);
 }
-.login-container{
+.login-container {
     width: 375px;
-    margin: 0  50px 0 50px;
+    margin: 0 50px 0 50px;
     padding: unset;
 }
 .home-container {
     padding: unset;
 }
-.title{
+.title {
     color: rgb(22, 24, 35);
     font-size: 32px;
     font-weight: bold;
@@ -88,7 +85,7 @@
     margin-bottom: 16px;
 }
 
-.Box-container{
+.Box-container {
     color: rgb(22, 24, 35);
     font-family: ProximaNova, Arial, Tahoma, PingFangSC, sans-serif;
     font-weight: 600;
@@ -108,13 +105,13 @@
     white-space: nowrap;
     background: rgb(255, 255, 255);
 }
-.Icon-container{
+.Icon-container {
     left: 12px;
     font-size: 20px;
     position: absolute;
     display: flex;
 }
-.description{
+.description {
     color: rgb(22, 24, 35);
     font-weight: 600;
     font-size: 15px;
@@ -123,7 +120,7 @@
     justify-content: space-between;
     margin-bottom: 5px;
 }
-.Div-input-container{
+.Div-input-container {
     position: relative;
     margin-bottom: 9px;
 }
@@ -143,7 +140,7 @@
     padding-inline-end: unset;
 }
 
-.Div-container{
+.Div-container {
     margin-bottom: 9px;
 }
 .Div-icon-container {
@@ -156,19 +153,19 @@
     height: 44px;
     padding-inline-end: 16px;
 }
-.password-icon{
+.password-icon {
     line-height: 0;
     margin-inline-start: 16px;
     cursor: pointer;
     font-size: 20px;
 }
-.forget-pass{
+.forget-pass {
     color: rgba(22, 24, 35, 0.75);
     font-weight: 600;
     font-size: 12px;
     display: inline-block;
 }
-.Submit-btn{
+.Submit-btn {
     border-radius: 4px;
     border: none;
     min-width: 120px;
@@ -189,4 +186,111 @@
     box-sizing: border-box;
     width: 100%;
     margin-top: 21px;
+}
+.signup {
+    color: rgb(22, 24, 35);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transform: translateY(-5px);
+    font-size: 15px;
+}
+.sign-up-btn {
+    margin-left: 5px;
+    font-weight: 600;
+    font-size: 15px;
+    line-height: 18px;
+    color: rgb(254, 44, 85);
+    &:hover {
+        text-decoration: underline;
+    }
+}
+.login {
+    color: rgb(22, 24, 35);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 15px;
+    transform: translateY(330px);
+    border-top: 1px solid rgba(22, 24, 35, 0.12);
+    padding-top: 12px;
+}
+.login-btn {
+    margin-left: 5px;
+    font-weight: 600;
+    font-size: 15px;
+    line-height: 18px;
+    color: rgb(254, 44, 85);
+    &:hover {
+        text-decoration: underline;
+    }
+}
+
+.Signup-btn {
+    border-radius: 4px;
+    border: none;
+    min-width: 120px;
+    min-height: 46px;
+    font-size: 16px;
+    line-height: 22px;
+    font-weight: 700;
+
+    display: flex;
+    position: relative;
+    -webkit-box-align: center;
+    align-items: center;
+    -webkit-box-pack: center;
+    justify-content: center;
+    padding: 6px 8px;
+    user-select: none;
+    cursor: pointer;
+    box-sizing: border-box;
+    width: 100%;
+    margin-top: 21px;
+}
+.sigup-btn-none {
+    border: none;
+    color: rgba(22, 24, 35, 0.34);
+    background-color: rgba(22, 24, 35, 0.06);
+    pointer-events: none;
+
+
+    border-radius: 4px;
+    border: none;
+    min-width: 120px;
+    min-height: 46px;
+    font-size: 16px;
+    line-height: 22px;
+    font-weight: 700;
+
+    display: flex;
+    position: relative;
+    -webkit-box-align: center;
+    align-items: center;
+    -webkit-box-pack: center;
+    justify-content: center;
+    padding: 6px 8px;
+    user-select: none;
+    cursor: pointer;
+    box-sizing: border-box;
+    width: 100%;
+    margin-top: 21px;
+}
+.Div-input-sigup {
+    position: relative;
+    margin-bottom: 9px;
+}
+.input-signup {
+    border-radius: 2px;
+    background-color: rgba(22, 24, 35, 0.06);
+    border: 1px solid rgba(22, 24, 35, 0.12);
+    padding-inline-start: 12px;
+    color: rgb(22, 24, 35);
+    line-height: 100%;
+    outline: none;
+    font-size: 16px;
+    height: 44px;
+    caret-color: rgb(254, 44, 85);
+    width: 100%;
+    padding-inline-end: unset;
 }

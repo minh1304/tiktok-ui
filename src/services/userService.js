@@ -56,7 +56,7 @@ export const unfollowAnUser = async ({ userId, accessToken }) => {
 };
 export const updateProfile = async ({ accessToken, form_data }) => {
     try {
-        return await httpRequest.post('auth/me?_method=PATCH', form_data , {
+        return await httpRequest.post('auth/me?_method=PATCH', form_data, {
             headers: {
                 Authorization: `Bearer ${accessToken}`,
                 'Content-Type': 'multipart/form-data',

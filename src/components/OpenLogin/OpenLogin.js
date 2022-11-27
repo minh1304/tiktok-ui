@@ -4,10 +4,11 @@ import { useState, useContext, createContext, useEffect } from 'react';
 import Login from '~/components/Auth/partials/Login';
 import AuthModal from '~/components/Auth/Modal';
 import EmailAndPasswordLoginForm from '~/components/Auth/partials/EmailAndPasswordLoginForm';
+import Signup from '~/components//Auth/partials/Signup';
 const cx = classNames.bind(styles);
 export const ModalBodyNameContext = createContext();
 
-function OpenLogin({onClose}) {
+function OpenLogin({ onClose }) {
     const [children, setChildren] = useState(<Login />);
     const [navigateBack, setNavigateBack] = useState(null);
     const [modalBodyName, setModalBodyName] = useState('login');
@@ -31,6 +32,10 @@ function OpenLogin({onClose}) {
                 setChildren(<EmailAndPasswordLoginForm />);
                 setNavigateBack('login');
                 break;
+            case 'signup':
+                setChildren(<Signup onClose={onClose}/>);
+                setNavigateBack('login');
+                break;
             default:
                 setChildren(<Login />);
                 break;
@@ -39,14 +44,14 @@ function OpenLogin({onClose}) {
     return (
         <div>
             <ModalBodyNameContext.Provider value={value}>
-                    <AuthModal
-                        children={children}
-                        onClose={() => {
-                            onClose();
-                            setModalBodyName('');
-                            setNavigateBack(null);
-                        }}
-                    />
+                <AuthModal
+                    children={children}
+                    onClose={() => {
+                        onClose();
+                        setModalBodyName('');
+                        setNavigateBack(null);
+                    }}
+                />
             </ModalBodyNameContext.Provider>
         </div>
     );
