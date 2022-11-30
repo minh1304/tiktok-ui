@@ -30,7 +30,6 @@ function Home() {
     const [openLogin, setOpenLogin] = useState(false);
     const [close, setClose] = useState(false);
     const handleOpenLogin = () => {
-        setOpenLogin(true);
         setClose(false);
     };
     const handleClose = () => {

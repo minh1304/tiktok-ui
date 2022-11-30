@@ -26,31 +26,46 @@ function Following() {
         setOpenLogin(false);
     };
     const authUser = useContext(AuthUserContext);
-
     const accessToken = authUser && authUser.meta.token;
 
     useEffect(() => {
-        timelineService
-            .getVideos({ type: 'for-you', page, accessToken: accessToken })
-            .then((data) => {
-                setVideos((prev) => [...prev, ...data]);
-            })
-            .catch((error) => {
-                console.log(error);
-            });
-    }, [page, accessToken]);
-    useEffect(() => {
-        userService
-            .getSuggested({ page: 1, perPage: 18 })
-            .then((data) => {
-                setSuggestedUser(data);
-            })
-            .catch((error) => console.log(error));
-    });
+        // timelineService
+        //     .getVideos({ type: 'for-you', page, accessToken: accessToken })
+        //     .then((data) => {
+        //         setVideos((prev) => [...prev, ...data]);
+        //     })
+        //     .catch((error) => {
+        //         console.log(error);
+        //     });
+        if (authUser) {
+            timelineService
+                .getVideos({ type: 'for-you', page, accessToken: accessToken })
+                .then((data) => {
+                    setVideos((prev) => [...prev, ...data]);
+                })
+                .catch((error) => {
+                    console.log(error);
+                });
+        } else {
+            userService
+                .getSuggested({ page: 1, perPage: 18 })
+                .then((data) => {
+                    setSuggestedUser(data);
+                })
+                .catch((error) => console.log(error));
+        }
+    }, [page, accessToken, authUser]);
+    // useEffect(() => {
+    //     userService
+    //         .getSuggested({ page: 1, perPage: 18 })
+    //         .then((data) => {
+    //             setSuggestedUser(data);
+    //         })
+    //         .catch((error) => console.log(error));
+    // });
     const handleSeeMore = () => {
         setPage(page + 1);
     };
-    // console.log(suggestedUser);
     return (
         <div className={cx('wrapper')}>
             {openLogin && !close && <OpenLogin onClose={handleClose} />}
