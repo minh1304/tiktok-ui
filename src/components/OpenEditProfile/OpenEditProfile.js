@@ -9,7 +9,6 @@ import styles from './OpenEditProfile.module.scss';
 import * as userService from '~/services/userService';
 import { AuthUserContext } from '~/App';
 
-
 const cx = classNames.bind(styles);
 function OpenEditProfile({ onClose, data }) {
     // const [name, setName] = useState('');
@@ -20,15 +19,10 @@ function OpenEditProfile({ onClose, data }) {
     const [lastname, setLasttname] = useState('');
     const [bio, setBio] = useState('');
     const [entered, setEntered] = useState(false);
-
     const authUser = useContext(AuthUserContext);
     const accessToken = authUser && authUser.meta.token;
 
     var formdata = new FormData();
-    formdata.append('first_name', firstname);
-    formdata.append('last_name', lastname);
-    formdata.append('bio', bio);
-
     const onSelectFiles = (event) => {
         const selectedFiles = event.target.files[0];
         formdata.append('avatar', selectedFiles);
@@ -37,7 +31,7 @@ function OpenEditProfile({ onClose, data }) {
             return URL.createObjectURL(file);
         });
         if (setSelectedImage !== null) {
-            setEntered(true)
+            setEntered(true);
             setIs_Image(true);
             setSelectedImage(imageArray);
         }
@@ -49,9 +43,9 @@ function OpenEditProfile({ onClose, data }) {
         // }
         userService
 
-            .updateProfile({ accessToken: accessToken, form_data: formdata})
+            .updateProfile({ accessToken: accessToken, form_data: formdata })
             .then((res) => {
-                    onClose();
+                onClose();
             })
             .catch((err) => {
                 console.log(err);
