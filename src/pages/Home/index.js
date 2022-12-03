@@ -27,15 +27,17 @@ function Home() {
     const handleSeeMore = () => {
         setPage(page + 1);
     };
-    const [openLogin, setOpenLogin] = useState(false);
-    const [close, setClose] = useState(false);
+    const [openLogin, setOpenLogin] = useState(false)
+    const [close, setClose] = useState(false)
     const handleOpenLogin = () => {
-        setClose(false);
+        setOpenLogin(true)
+        setClose(false)
     };
     const handleClose = () => {
-        setClose(true);
-        setOpenLogin(false);
-    };
+        setClose(true)
+        setOpenLogin(false)
+    }
+    
 
     return (
         <div className={cx('wrapper')}>

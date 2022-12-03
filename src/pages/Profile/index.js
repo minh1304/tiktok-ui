@@ -136,9 +136,14 @@ function Profile() {
         setClose(false);
     };
     const handleClose = () => {
-        window.location.reload();
-        setClose(true);
-        setOpenLogin(false);
+        if (!authUser) {
+            setClose(true);
+            setOpenLogin(false);
+        } else {
+            window.location.reload();
+            setClose(true);
+            setOpenLogin(false);
+        }
     };
     const handleEditProfile = () => {
         setOpenProfile(true);

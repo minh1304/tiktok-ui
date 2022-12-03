@@ -24,6 +24,7 @@ import AccountPreview from './AccountPreview';
 import { AuthUserContext } from '~/App';
 import * as userService from '~/services/userService';
 import useElementOnScreen from './useElementOnScreen/useElementOnScreen';
+import OpenLogin from '~/components/OpenLogin';
 
 const cx = classNames.bind(styles);
 
@@ -45,7 +46,8 @@ function Video({ video, isFollow, onOpenLogin }) {
     const [like, setLike] = useState(video.is_like); //api don't work
     const [following, setFollowing] = useState(video.user.is_followed);
     const authUser = useContext(AuthUserContext);
-    const handleLike = () => {
+    const handleLike = (e) => {
+        //call api
         if (like) {
             setLike(false);
         } else {
@@ -53,7 +55,7 @@ function Video({ video, isFollow, onOpenLogin }) {
         }
     };
     const handleFollow = () => {
-        if (following & authUser) {
+        if (following && authUser) {
             userService
                 .unfollowAnUser({ userId: video.user.id, accessToken: authUser.meta.token })
                 .then((res) => {
@@ -90,7 +92,7 @@ function Video({ video, isFollow, onOpenLogin }) {
             videoRef.current.play();
             setPlaying(true);
         }
-    }
+    };
     const handlePlayVideo = () => {
         if (playing) {
             videoRef.current.pause();
@@ -106,11 +108,9 @@ function Video({ video, isFollow, onOpenLogin }) {
         } else {
             setMute(true);
         }
-
     };
     useEffect(() => {
         if (isVisibile) {
-
             if (!playing) {
                 videoRef.current.play();
                 setPlaying(true);
@@ -120,7 +120,6 @@ function Video({ video, isFollow, onOpenLogin }) {
                 videoRef.current.pause();
                 setPlaying(false);
             }
-
         }
     }, [isVisibile]);
     return (
@@ -223,25 +222,55 @@ function Video({ video, isFollow, onOpenLogin }) {
                         </div>
                     </div>
                     <div className={cx('action')}>
-                        <button className={cx('button')} onClick={handleLike}>
-                            <div className={cx('icon')}>
-                                <p>
-                                    <FontAwesomeIcon
-                                        className={like ? cx('span-icon-wrapper-like') : cx('span-icon-wrapper')}
-                                        icon={faHeart}
-                                    />
-                                </p>
-                            </div>
-                            <strong className={cx('count')}>{video.likes_count}</strong>
-                        </button>
-                        <button className={cx('button')}>
-                            <div className={cx('icon')}>
-                                <p className="icon-wrapper">
-                                    <FontAwesomeIcon className={cx('span-icon-wrapper')} icon={faCommentDots} />
-                                </p>
-                            </div>
-                            <strong className={cx('count')}>{video.comments_count}</strong>
-                        </button>
+                        {authUser ? (
+                            <>
+                                <button className={cx('button')} onClick={handleLike}>
+                                    <div className={cx('icon')}>
+                                        <p>
+                                            <FontAwesomeIcon
+                                                className={
+                                                    like ? cx('span-icon-wrapper-like') : cx('span-icon-wrapper')
+                                                }
+                                                icon={faHeart}
+                                            />
+                                        </p>
+                                    </div>
+                                    <strong className={cx('count')}>{video.likes_count}</strong>
+                                </button>
+                                <button className={cx('button')} onClick={()=> alert("Waiting API")}>
+                                    <div className={cx('icon')}>
+                                        <p className="icon-wrapper">
+                                            <FontAwesomeIcon className={cx('span-icon-wrapper')} icon={faCommentDots} />
+                                        </p>
+                                    </div>
+                                    <strong className={cx('count')}>{video.comments_count}</strong>
+                                </button>
+                            </>
+                        ) : (
+                            <>
+                                <button className={cx('button')} onClick={onOpenLogin}>
+                                    <div className={cx('icon')}>
+                                        <p>
+                                            <FontAwesomeIcon
+                                                className={like ? cx('span-icon-wrapper-like') : cx('span-icon-wrapper')}
+                                                icon={faHeart}
+                                            />
+                                        </p>
+                                    </div>
+                                    <strong className={cx('count')}>{video.likes_count}</strong>
+                                </button>
+                                <button className={cx('button')} onClick={onOpenLogin}>
+                                    <div className={cx('icon')}>
+                                        <p className="icon-wrapper">
+                                            <FontAwesomeIcon className={cx('span-icon-wrapper')} icon={faCommentDots} />
+                                        </p>
+                                    </div>
+                                    <strong className={cx('count')}>{video.comments_count}</strong>
+                                </button>
+
+                            </>
+                        )}
+
                         <button className={cx('button')}>
                             <div className={cx('icon')}>
                                 <p className="icon-wrapper">
