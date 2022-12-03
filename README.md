@@ -11,4 +11,4 @@ Pass: 123456
 # Sign up:
 ![image](https://user-images.githubusercontent.com/63965252/205225849-89e0382b-a03b-494c-88b8-6cad48fcb173.png)
 # Edit profile 
-![image](https://user-images.githubusercontent.com/63965252/205424110-67eea008-6509-4c82-b468-af0fb1299e13.png)
+![image](https://user-images.githubusercontent.com/63965252/205424272-72832ca9-2f18-4aaf-945b-f31d6a814db2.png)
